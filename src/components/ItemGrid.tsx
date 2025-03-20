@@ -5,13 +5,12 @@ import { Item } from '../types/Item';
 function ItemGrid() {
   const { data: itemsMap, isLoading, error } = useQuery<Record<string, Item>, Error>({
     queryKey: ['items'],
-    queryFn: fetchItems,
+    queryFn: fetchItems
   });
 
   if (isLoading) return <p>Cargando...</p>;
   if (error) return <p>Error al cargar items</p>;
 
-  // Convierte el objeto en un array
   const items = itemsMap ? Object.values(itemsMap) : [];
 
   return (

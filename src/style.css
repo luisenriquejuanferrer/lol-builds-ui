@@ -5,15 +5,55 @@
   background-color: #101117;
 }
 
+h1  {
+  color: white;
+  text-align: center;
+  margin: 20px 0px;
+  font-size: 1.5rem;
+}
+
+.flex-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5rem;
+}
+
+/* Estilos específicos de ItemFilters */
+.item-filters {
+  width: auto;
+  background-color: #1C1F23;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 15px 15px 5px 15px;
+}
+
+.checkbox-container {
+  background-color: #1C1F23;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox-container input {
+  margin-right: 10px;
+}
+
+.checkbox-container label {
+  background-color: #1C1F23;
+  color: white;
+}
+
+/* Estilos específicos de ItemGrid */
 .item-grid {
   display: grid;
-  width: 45%;
+  width: auto;
   height: auto;
   background-color: #1C1F23;
   border: 1px solid white;
   border-radius: 10px;
-  padding: 15px 0px;
-  margin: auto;
+  padding: 15px 15px;
+  gap: 0.3rem 2rem;
   grid-template-columns: repeat(6, 1fr);
 }
 
