@@ -3,5 +3,6 @@ export interface Item {
     name: string;
     image: string;
     totalGold: number;
+    tags: string[];
   }
   

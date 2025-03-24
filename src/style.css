@@ -47,7 +47,7 @@ h1 {
 /* Estilos específicos de ItemGrid */
 .item-grid {
   display: grid;
-  width: auto;
+  width: 500px;
   height: auto;
   background-color: #1c1f23;
   border: 1px solid white;
@@ -55,6 +55,12 @@ h1 {
   padding: 15px 15px;
   gap: 0.3rem 2rem;
   grid-template-columns: repeat(6, 1fr);
+}
+
+.item-grid.no-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .item-card {
@@ -77,6 +83,17 @@ h1 {
   border: 1px solid white;
   width: 50px;
   border-radius: 10px;
+}
+
+.item-grid p {
+  background-color: #1c1f23;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  font-weight: lighter;
+  width: 100%;
 }
 
 .empty-build-card {
