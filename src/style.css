@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300;500&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background-color: #101117;
+  font-family: 'Open Sans', sans-serif;
+}
+
+html {
+  overflow-y: scroll;
 }
 
 h1 {
@@ -36,7 +43,7 @@ h1 {
 }
 
 .checkbox-container input {
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
 .checkbox-container label {
@@ -74,9 +81,8 @@ h1 {
 .item-card h2 {
   background-color: #1c1f23;
   color: white;
-  font-size: 0.8rem;
-  font-weight: 700;
-  font-weight: lighter;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 .item-card img {
