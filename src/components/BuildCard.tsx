@@ -2,7 +2,7 @@ import "../style.css";
 import { useState } from 'react';
 
 function BuildCard() {
-  const [buildItems, setBuildItems] = useState<string[]>(Array(6).fill("https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/1000.png")); // Estado para los items de la build
+  const [buildItems, setBuildItems] = useState<string[]>(Array(6).fill("")); // Estado para los items de la build
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>, index: number) => {
     event.preventDefault();
@@ -28,7 +28,7 @@ function BuildCard() {
       </div>
       <div className="build-card">
         <div className="build-champion">
-          <img></img>
+          <img src="https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/Kaisa.png" alt="Kai'sa"/>
           <h2>Kai'sa</h2>
         </div>
         <div className="build-items-grid">
@@ -36,15 +36,14 @@ function BuildCard() {
             <div className="build-items-slot"
               key={index}
               onDrop={(event) => handleDrop(event, index)}
-              onDragOver={handleDragOver}
-            >
-              <img src={item} alt={`Item ${index + 1}`} />
+              onDragOver={handleDragOver}>
+              {item && <img src={item} alt={`Item ${index + 1}`} />}
             </div>
           ))}
         </div>
         <div className="build-items-trinket">
           <img
-            src="https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/1000.png"
+            src=""
             alt=""
           />
         </div>
