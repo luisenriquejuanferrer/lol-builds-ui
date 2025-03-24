@@ -5,7 +5,7 @@
   background-color: #101117;
 }
 
-h1  {
+h1 {
   color: white;
   text-align: center;
   margin: 20px 0px;
@@ -16,20 +16,20 @@ h1  {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 5rem;
+  gap: 2rem;
 }
 
 /* Estilos específicos de ItemFilters */
 .item-filters {
   width: auto;
-  background-color: #1C1F23;
+  background-color: #1c1f23;
   border: 1px solid white;
   border-radius: 10px;
   padding: 15px 15px 5px 15px;
 }
 
 .checkbox-container {
-  background-color: #1C1F23;
+  background-color: #1c1f23;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -40,7 +40,7 @@ h1  {
 }
 
 .checkbox-container label {
-  background-color: #1C1F23;
+  background-color: #1c1f23;
   color: white;
 }
 
@@ -49,7 +49,7 @@ h1  {
   display: grid;
   width: auto;
   height: auto;
-  background-color: #1C1F23;
+  background-color: #1c1f23;
   border: 1px solid white;
   border-radius: 10px;
   padding: 15px 15px;
@@ -58,7 +58,7 @@ h1  {
 }
 
 .item-card {
-  background-color: #1C1F23;
+  background-color: #1c1f23;
   margin: auto;
   border-radius: 10px;
   width: 50px;
@@ -66,7 +66,7 @@ h1  {
 }
 
 .item-card h2 {
-  background-color: #1C1F23;
+  background-color: #1c1f23;
   color: white;
   font-size: 0.8rem;
   font-weight: 700;
@@ -74,6 +74,108 @@ h1  {
 }
 
 .item-card img {
+  border: 1px solid white;
+  width: 50px;
+  border-radius: 10px;
+}
+
+.empty-build-card {
+  background-color: #1c1f23;
+  border-radius: 10px;
+  border: 1px solid white;
+  width: 350px;
+  height: 125px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-build-card h2 {
+  background-color: #1c1f23;
+  color: white;
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-weight: lighter;
+}
+
+.build-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.build-card-container p {
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  font-weight: lighter;
+  align-self: start;
+}
+
+.build-card {
+  background-color: #1c1f23;
+  border-radius: 10px;
+  border: 1px solid white;
+  width: 350px;
+  height: 125px;
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.build-champion {
+  background-color: #1c1f23;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.build-champion img {
+  border: 1px solid white;
+  width: 65px;
+  border-radius: 10px;
+}
+
+.build-champion h2 {
+  background-color: #1c1f23;
+  color: white;
+  width: 50px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-weight: lighter;
+}
+
+.build-items-grid {
+  background-color: #1c1f23;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.3rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.build-items-grid img {
+  border: 1px solid white;
+  width: 50px;
+  border-radius: 10px;
+}
+
+.build-items-trinket {
+  background-color: #1c1f23;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.build-items-trinket img {
   border: 1px solid white;
   width: 50px;
   border-radius: 10px;
