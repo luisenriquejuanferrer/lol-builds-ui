@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import ItemGrid from "../components/ItemGrid";
 import ItemFilters from "../components/ItemFilters";
 import EmptyBuildCard from "../components/EmptyBuildCard";
 import BuildCard from "../components/BuildCard";
+import { Item } from '../types/Item';
 import "../style.css";
 
 interface Filters {
@@ -84,10 +85,14 @@ const HomePage: React.FC = () => {
     }));
   };
 
+  const handleDragStart = (item: Item) => {
+    event.dataTransfer.setData("itemId", item.id);
+  };
+
   return (
     <div className="flex-container">
       <ItemFilters filters={filters} onCheckboxChange={handleCheckboxChange} />
-      <ItemGrid filters={filters} />
+      <ItemGrid filters={filters} onDragStart={handleDragStart} />
       <div>
         <EmptyBuildCard />
         <BuildCard />

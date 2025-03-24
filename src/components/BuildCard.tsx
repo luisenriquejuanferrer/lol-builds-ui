@@ -1,6 +1,20 @@
 import "../style.css";
+import { useState } from 'react';
 
 function BuildCard() {
+  const [buildItems, setBuildItems] = useState<string[]>(Array(6).fill("https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/1000.png")); // Estado para los items de la build
+
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>, index: number) => {
+    event.preventDefault();
+    const itemId = event.dataTransfer.getData("itemId");
+    const newBuildItems = [...buildItems];
+    newBuildItems[index] = `https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/${itemId}.png`;
+    setBuildItems(newBuildItems);
+  };
+
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+  };
   return (
     <div className="build-card-container">
       <div className="build-card-header">
@@ -18,30 +32,15 @@ function BuildCard() {
           <h2>Kai'sa</h2>
         </div>
         <div className="build-items-grid">
-          <img
-            src="https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/1000.png"
-            alt=""
-          />
-          <img
-            src="https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/1000.png"
-            alt=""
-          />
-          <img
-            src="https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/1000.png"
-            alt=""
-          />
-          <img
-            src="https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/1000.png"
-            alt=""
-          />
-          <img
-            src="https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/1000.png"
-            alt=""
-          />
-          <img
-            src="https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/1000.png"
-            alt=""
-          />
+          {buildItems.map((item, index) => (
+            <div className="build-items-slot"
+              key={index}
+              onDrop={(event) => handleDrop(event, index)}
+              onDragOver={handleDragOver}
+            >
+              <img src={item} alt={`Item ${index + 1}`} />
+            </div>
+          ))}
         </div>
         <div className="build-items-trinket">
           <img

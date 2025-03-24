@@ -9,9 +9,10 @@ interface Filters {
 
 interface ItemGridProps {
   filters: Filters;
+  onDragStart: (item: Item) => void;
 }
 
-const ItemGrid: React.FC<ItemGridProps> = ({ filters }) => {
+const ItemGrid: React.FC<ItemGridProps> = ({ filters, onDragStart }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const {
     data: itemsMap,
@@ -60,7 +61,12 @@ const ItemGrid: React.FC<ItemGridProps> = ({ filters }) => {
       >
         {filteredItems.length > 0 ? (
           filteredItems.map((item) => (
-            <div key={item.id} className="item-card">
+            <div
+              key={item.id}
+              className="item-card"
+              draggable
+              onDragStart={() => onDragStart(item)}
+            >
               <img src={item.image} alt={item.name} />
               <h2>{item.totalGold}</h2>
             </div>
