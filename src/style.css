@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300;500&display=swap');
-@import url('node_modules/bootstrap-icons/font/bootstrap-icons.css');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300;500&display=swap");
+@import url("node_modules/bootstrap-icons/font/bootstrap-icons.css");
 
+/* Estilos Globales */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background-color: #101117;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 html {
@@ -53,14 +54,50 @@ h1 {
 }
 
 /* Estilos específicos de ItemGrid */
-.item-grid {
-  display: grid;
-  width: 500px;
-  height: auto;
+.item-grid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   background-color: #1c1f23;
   border: 1px solid white;
   border-radius: 10px;
   padding: 15px 15px;
+  width: 500px;
+  height: auto;
+}
+
+.item-grid-search {
+  width: 75%;
+  display: flex;
+    border: 1px solid white;
+align-items: center;
+  align-self: start;
+  border-radius: 6px;
+  
+}
+
+.item-grid-search i {
+  color: white;
+  margin-inline: 8px;
+}
+
+.item-grid-search input {
+  all: unset;
+  width: 100%;
+  height: 25px;
+  font-weight: bold;
+  color: white;
+  padding: 4px;
+  margin-left: 0;
+  text-align: left;
+}
+
+.item-grid {
+  width: 100%;
+  display: grid;
+  background-color: #1c1f23;
   gap: 0.3rem 2rem;
   grid-template-columns: repeat(6, 1fr);
 }
@@ -103,6 +140,7 @@ h1 {
   width: 100%;
 }
 
+/* Estilos específicos de BuildCard */
 .empty-build-card {
   background-color: #1c1f23;
   border-radius: 6px;

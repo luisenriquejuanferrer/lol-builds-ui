@@ -6,6 +6,7 @@ import BuildCard from "../components/BuildCard";
 import "../style.css";
 
 interface Filters {
+  [key: string]: boolean;
   AbilityHaste: boolean;
   //Active: boolean;
   Armor: boolean;
