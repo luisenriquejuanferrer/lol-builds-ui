@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import ItemGrid from '../components/ItemGrid';
-import ItemFilters from '../components/ItemFilters';
-import EmptyBuildCard from '../components/EmptyBuildCard';
-import BuildCard from '../components/BuildCard';
-import '../style.css';
+import React, { useState } from "react";
+import ItemGrid from "../components/ItemGrid";
+import ItemFilters from "../components/ItemFilters";
+import EmptyBuildCard from "../components/EmptyBuildCard";
+import BuildCard from "../components/BuildCard";
+import "../style.css";
 
 interface Filters {
   AbilityHaste: boolean;
@@ -88,8 +88,8 @@ const HomePage: React.FC = () => {
       <ItemFilters filters={filters} onCheckboxChange={handleCheckboxChange} />
       <ItemGrid filters={filters} />
       <div>
-        <BuildCard />
         <EmptyBuildCard />
+        <BuildCard />
       </div>
     </div>
   );

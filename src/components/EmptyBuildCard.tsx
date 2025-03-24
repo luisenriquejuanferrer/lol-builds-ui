@@ -8,7 +8,7 @@ function EmptyBuildCard() {
   return (
     <div>
       <div className="empty-build-card">
-        <h2>Click here to start a new build...</h2>
+        <h2>+</h2>
       </div>
     </div>
   );
