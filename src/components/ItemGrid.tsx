@@ -66,6 +66,7 @@ const ItemGrid: React.FC<ItemGridProps> = ({ filters, onDragStart }) => {
               className="item-card"
               draggable
               onDragStart={() => onDragStart(item)}
+                            title={item.name}
             >
               <img src={item.image} alt={item.name} />
               <h2>{item.totalGold}</h2>
