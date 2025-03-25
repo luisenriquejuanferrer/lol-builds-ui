@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../style.css";
 
-function EmptyBuildCard() {
+function ButtonAddBuildCard() {
 
 
 
@@ -14,4 +14,4 @@ function EmptyBuildCard() {
   );
 }
 
-export default EmptyBuildCard;
+export default ButtonAddBuildCard;

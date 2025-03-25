@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ItemGrid from "../components/ItemGrid";
 import ItemFilters from "../components/ItemFilters";
-import EmptyBuildCard from "../components/EmptyBuildCard";
+import ButtonAddBuildCard from "../components/ButtonAddBuildCard";
 import BuildCard from "../components/BuildCard";
 import { Item } from '../types/Item';
 import "../style.css";
@@ -94,7 +94,7 @@ const HomePage: React.FC = () => {
       <ItemFilters filters={filters} onCheckboxChange={handleCheckboxChange} />
       <ItemGrid filters={filters} onDragStart={handleDragStart} />
       <div>
-        <EmptyBuildCard />
+        <ButtonAddBuildCard />
         <BuildCard />
       </div>
     </div>
