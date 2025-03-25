@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../style.css"; // Importa el archivo CSS
 
 interface Filters {
   AbilityHaste: boolean;
