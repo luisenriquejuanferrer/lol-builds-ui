@@ -68,14 +68,23 @@ h1 {
   height: auto;
 }
 
+.item-grid-search-and-filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  background-color: #1c1f23;
+}
+
 .item-grid-search {
   width: 75%;
   display: flex;
-    border: 1px solid white;
-align-items: center;
+  border: 1px solid white;
+  align-items: center;
   align-self: start;
   border-radius: 6px;
-  
 }
 
 .item-grid-search i {
@@ -92,6 +101,29 @@ align-items: center;
   padding: 4px;
   margin-left: 0;
   text-align: left;
+}
+
+.item-grid-filter {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1c1f23;
+}
+
+.item-grid-filter select {
+  all: unset;
+  width: 100%;
+  height: 25px;
+  font-weight: lighter;
+  color: white;
+  padding: 4px 8px;
+  margin-left: 0;
+  text-align: left;
+  background-color: #101117;
+  border: 1px solid white;
+  border-radius: 6px;
+  align-items: center;
 }
 
 .item-grid {

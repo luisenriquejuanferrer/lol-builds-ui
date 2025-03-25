@@ -14,6 +14,8 @@ interface ItemGridProps {
 
 const ItemGrid: React.FC<ItemGridProps> = ({ filters, onDragStart }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc" | "">(""); // Estado para el orden de filtrado
+
   const {
     data: itemsMap,
     isLoading,
@@ -45,22 +47,47 @@ const ItemGrid: React.FC<ItemGridProps> = ({ filters, onDragStart }) => {
     return matchesFilters && matchesSearchTerm;
   });
 
+  // Ordena los items según el orden de filtrado seleccionado
+  const sortedItems = [...filteredItems].sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.totalGold - b.totalGold;
+    } else if (sortOrder === "desc") {
+      return b.totalGold - a.totalGold;
+    }
+    return 0;
+  });
+
   return (
     <div className="item-grid-container">
-      <div className="item-grid-search">
-        <i className="bi bi-search"></i>
-        <input
-          type="text"
-          placeholder="Item Search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+      <div className="item-grid-search-and-filter">
+        <div className="item-grid-search">
+          <i className="bi bi-search"></i>
+          <input
+            type="text"
+            placeholder="Item Search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className="item-grid-filter">
+          <select
+            value={sortOrder}
+            onChange={(e) =>
+              setSortOrder(e.target.value as "asc" | "desc" | "")
+            }
+          >
+            <option value="">Filter</option>
+            <option value="asc">Gold Down</option>
+            <option value="desc">Gold Up</option>
+          </select>
+        </div>
       </div>
+
       <div
-        className={`item-grid ${filteredItems.length === 0 ? "no-items" : ""}`}
+        className={`item-grid ${sortedItems.length === 0 ? "no-items" : ""}`}
       >
-        {filteredItems.length > 0 ? (
-          filteredItems.map((item) => (
+        {sortedItems.length > 0 ? (
+          sortedItems.map((item) => (
             <div
               key={item.id}
               className="item-card"
