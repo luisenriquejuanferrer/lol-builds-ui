@@ -4,7 +4,6 @@ import ItemFilters from "../components/ItemFilters";
 import ButtonAddBuildCard from "../components/ButtonAddBuildCard";
 import BuildCard from "../components/BuildCard";
 import { Item } from '../types/Item';
-import "../style.css";
 
 interface Filters {
   [key: string]: boolean;
