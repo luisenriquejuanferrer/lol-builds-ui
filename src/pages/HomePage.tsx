@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ItemGrid from "../components/ItemGrid";
 import ItemFilters from "../components/ItemFilters";
-import ButtonAddBuildCard from "../components/ButtonAddBuildCard";
+import ButtonAddBuildCard from "../components/Buttons/ButtonAddBuildCard";
 import BuildCard from "../components/BuildCard";
 import { Item } from '../types/Item';
 
@@ -76,6 +76,14 @@ const HomePage: React.FC = () => {
     SpellVamp: false,
   });
 
+  interface BuildCardData {
+    id: number; // Identificador único para cada BuildCard
+    items: string[]; // Estado inicial de los ítems en la BuildCard
+  }
+
+  const [buildCards, setBuildCards] = useState<BuildCardData[]>([]); // Lista de BuildCards
+
+
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
     setFilters((prevFilters) => ({
@@ -88,13 +96,23 @@ const HomePage: React.FC = () => {
     event.dataTransfer.setData("itemId", item.id);
   };
 
+  const handleAddBuildCard = () => {
+    const newBuildCard: BuildCardData = {
+      id: Date.now(), // Usamos un timestamp como identificador único
+      items: Array(6).fill(""), // Estado inicial de los ítems en la BuildCard
+    };
+    setBuildCards((prevBuildCards) => [...prevBuildCards, newBuildCard]);
+  };
+
   return (
     <div className="flex-container">
       <ItemFilters filters={filters} onCheckboxChange={handleCheckboxChange} />
       <ItemGrid filters={filters} onDragStart={handleDragStart} />
       <div>
-        <ButtonAddBuildCard />
-        <BuildCard />
+        <ButtonAddBuildCard onClick={handleAddBuildCard}/>
+        {buildCards.map((buildCard) => (
+          <BuildCard key={buildCard.id} id={buildCard.id} initialItems={buildCard.items} />
+        ))}
       </div>
     </div>
   );

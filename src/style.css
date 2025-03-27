@@ -197,7 +197,7 @@ h1 {
 }
 
 /* Estilos específicos de BuildCard */
-.empty-build-card {
+.btn-add-build-card {
   background-color: var(--card-background-color);
   border-radius: 6px;
   border: 1px solid var(--card-border-color);
@@ -209,12 +209,9 @@ h1 {
   justify-content: center;
 }
 
-.empty-build-card h2 {
+.btn-add-build-card i {
   background-color: var(--card-background-transparent-color);
   color: var(--text-color);
-  font-size: 1.15rem;
-  font-weight: 700;
-  font-weight: lighter;
 }
 
 .build-card-container {

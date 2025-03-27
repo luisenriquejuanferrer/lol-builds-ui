@@ -1,7 +1,12 @@
 import { useState } from "react";
 
-function BuildCard() {
-  const [buildItems, setBuildItems] = useState<string[]>(Array(6).fill("")); // Estado para los items de la build
+interface BuildCardProps {
+  id: number;
+  initialItems: string[];
+}
+
+const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems }) => {
+  const [buildItems, setBuildItems] = useState<string[]>(initialItems);
 
   const handleDrop = (
     event: React.DragEvent<HTMLDivElement>,
@@ -32,7 +37,7 @@ function BuildCard() {
   return (
     <div className="build-card-container">
       <div className="build-card-header">
-        <p>Item build 01</p>
+        <p>Empty Build</p>
         <button>
           <i className="bi bi-pencil-square"></i>
         </button>
