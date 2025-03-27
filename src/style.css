@@ -46,6 +46,8 @@ h1 {
 
 /* Estilos específicos de ItemFilters */
 .item-filters {
+  position: sticky;
+  top: 2rem;
   width: auto;
   background-color: var(--card-background-color);
   border: 1px solid var(--card-border-color);
@@ -76,6 +78,8 @@ h1 {
 
 /* Estilos específicos de ItemGrid */
 .item-grid-container {
+  position: sticky;
+  top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,7 +92,8 @@ h1 {
   width: 550px;
   max-height: 768px; /* This works for now but should be adjusted in the future for different screen resolutions */
   scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-color) var(--card-background-transparent-color);
+  scrollbar-color: var(--scrollbar-color)
+    var(--card-background-transparent-color);
 }
 
 .item-grid-search-and-filter {
