@@ -10,6 +10,9 @@ function BuildCard() {
     event.preventDefault();
     const itemId = event.dataTransfer.getData("itemId");
     const newBuildItems = [...buildItems];
+
+    if (!itemId) return;
+
     newBuildItems[
       index
     ] = `https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/${itemId}.png`;
