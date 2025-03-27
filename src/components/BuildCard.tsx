@@ -41,10 +41,7 @@ function BuildCard() {
           ))}
         </div>
         <div className="build-items-trinket">
-          <img
-            src=""
-            alt=""
-          />
+          
         </div>
       </div>
     </div>

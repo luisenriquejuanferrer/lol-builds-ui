@@ -1,6 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300;500&display=swap");
 @import url("node_modules/bootstrap-icons/font/bootstrap-icons.css");
 
+:root {
+  --background-color: #0c0d13;
+  --card-background-color: #1c1f2375;
+  --card-background-transparent-color: #ffffff00;
+  --card-border-color: #a1a1a1;
+  --scrollbar-color: #575757;
+  --text-color: #ffffff;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -13,7 +22,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #101117;
+  background-color: var(--background-color);
   font-family: "Open Sans", sans-serif;
 }
 
@@ -22,7 +31,7 @@ html {
 }
 
 h1 {
-  color: white;
+  color: var(--text-color);
   text-align: center;
   margin: 20px 0px;
   font-size: 1.5rem;
@@ -38,14 +47,14 @@ h1 {
 /* Estilos específicos de ItemFilters */
 .item-filters {
   width: auto;
-  background-color: #1c1f23;
-  border: 1px solid white;
+  background-color: var(--card-background-color);
+  border: 1px solid var(--card-border-color);
   border-radius: 10px;
   padding: 15px;
 }
 
 .checkbox-container {
-  background-color: #1c1f23;
+  background-color: var(--card-background-transparent-color);
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -60,8 +69,9 @@ h1 {
 }
 
 .checkbox-container label {
-  background-color: #1c1f23;
-  color: white;
+  background-color: var(--card-background-transparent-color);
+  backdrop-filter: blur(5px);
+  color: var(--text-color);
 }
 
 /* Estilos específicos de ItemGrid */
@@ -71,14 +81,14 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: #1c1f23;
-  border: 1px solid white;
+  background-color: var(--card-background-color);
+  border: 1px solid var(--card-border-color);
   border-radius: 10px;
   padding: 15px;
   width: 550px;
   max-height: 768px; /* This works for now but should be adjusted in the future for different screen resolutions */
   scrollbar-width: thin;
-  scrollbar-color: #575757 #1c1f23;
+  scrollbar-color: var(--scrollbar-color) var(--card-background-transparent-color);
 }
 
 .item-grid-search-and-filter {
@@ -88,20 +98,20 @@ h1 {
   justify-content: center;
   gap: 1rem;
   width: 100%;
-  background-color: #1c1f23;
+  background-color: var(--card-background-transparent-color);
 }
 
 .item-grid-search {
   width: 75%;
   display: flex;
-  border: 1px solid white;
+  border: 1px solid var(--card-border-color);
   align-items: center;
   align-self: start;
   border-radius: 6px;
 }
 
 .item-grid-search i {
-  color: white;
+  color: var(--text-color);
   margin-inline: 8px;
 }
 
@@ -110,7 +120,7 @@ h1 {
   width: 100%;
   height: 25px;
   font-weight: bold;
-  color: white;
+  color: var(--text-color);
   padding: 4px;
   margin-left: 0;
   text-align: left;
@@ -121,7 +131,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #1c1f23;
+  background-color: var(--card-background-transparent-color);
 }
 
 .item-grid-filter select {
@@ -129,12 +139,12 @@ h1 {
   width: 100%;
   height: 25px;
   font-weight: lighter;
-  color: white;
+  color: var(--text-color);
   padding: 4px 8px;
   margin-left: 0;
   text-align: left;
-  background-color: #101117;
-  border: 1px solid white;
+  background-color: var(--background-color);
+  border: 1px solid var(--card-border-color);
   border-radius: 6px;
   align-items: center;
 }
@@ -142,7 +152,7 @@ h1 {
 .item-grid {
   width: 100%;
   display: grid;
-  background-color: #1c1f23;
+  background-color: var(--card-background-transparent-color);
   gap: 0.3rem 1rem;
   grid-template-columns: repeat(6, 1fr);
   overflow-y: auto;
@@ -155,7 +165,7 @@ h1 {
 }
 
 .item-card {
-  background-color: #1c1f23;
+  background-color: var(--card-background-transparent-color);
   margin: auto;
   border-radius: 10px;
   width: 50px;
@@ -163,23 +173,23 @@ h1 {
 }
 
 .item-card h2 {
-  background-color: #1c1f23;
-  color: white;
+  background-color: var(--card-background-transparent-color);
+  color: var(--text-color);
   font-size: 0.9rem;
   font-weight: bold;
 }
 
 .item-card img {
-  border: 1px solid white;
+  border: 1px solid var(--card-border-color);
   width: 50px;
   border-radius: 10px;
 }
 
 .item-grid p {
-  background-color: #1c1f23;
+  background-color: var(--card-background-transparent-color);
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--text-color);
   font-size: 1rem;
   font-weight: 700;
   font-weight: lighter;
@@ -188,9 +198,9 @@ h1 {
 
 /* Estilos específicos de BuildCard */
 .empty-build-card {
-  background-color: #1c1f23;
+  background-color: var(--card-background-color);
   border-radius: 6px;
-  border: 1px solid white;
+  border: 1px solid var(--card-border-color);
   width: 350px;
   height: auto;
   display: flex;
@@ -200,8 +210,8 @@ h1 {
 }
 
 .empty-build-card h2 {
-  background-color: #1c1f23;
-  color: white;
+  background-color: var(--card-background-transparent-color);
+  color: var(--text-color);
   font-size: 1.15rem;
   font-weight: 700;
   font-weight: lighter;
@@ -224,7 +234,7 @@ h1 {
 }
 
 .build-card-header p {
-  color: white;
+  color: var(--text-color);
   font-size: 1rem;
   font-weight: 700;
   font-weight: lighter;
@@ -238,22 +248,22 @@ h1 {
 .build-card-header button {
   width: 25px;
   height: 25px;
-  background-color: #1c1f23;
-  color: white;
-  border: 1px solid white;
+  background-color: var(--card-background-color);
+  color: var(--text-color);
+  border: 1px solid var(--card-border-color);
   border-radius: 3px;
   justify-content: center;
   align-items: center;
 }
 
 .build-card-header i {
-  background-color: #1c1f23;
+  background-color: var(--card-background-transparent-color);
 }
 
 .build-card {
-  background-color: #1c1f23;
+  background-color: var(--card-background-color);
   border-radius: 10px;
-  border: 1px solid white;
+  border: 1px solid var(--card-border-color);
   width: 350px;
   height: 125px;
   display: flex;
@@ -264,7 +274,7 @@ h1 {
 }
 
 .build-champion {
-  background-color: #1c1f23;
+  background-color: var(--card-background-transparent-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -273,15 +283,15 @@ h1 {
 }
 
 .build-champion img {
-  border: 1px solid white;
+  border: 1px solid var(--card-border-color);
   width: 65px;
   height: 65px;
   border-radius: 10px;
 }
 
 .build-champion h2 {
-  background-color: #1c1f23;
-  color: white;
+  background-color: var(--card-background-transparent-color);
+  color: var(--text-color);
   width: 50px;
   font-size: 0.8rem;
   font-weight: 700;
@@ -289,7 +299,7 @@ h1 {
 }
 
 .build-items-grid {
-  background-color: #1c1f23;
+  background-color: var(--card-background-transparent-color);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.3rem 0.5rem;
@@ -303,8 +313,8 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #101117;
-  border: 1px solid white;
+  background-color: var(--background-color);
+  border: 1px solid var(--card-border-color);
   border-radius: 10px;
 }
 
@@ -315,11 +325,11 @@ h1 {
 }
 
 .build-items-trinket {
-  border: 1px solid white;
+  border: 1px solid var(--card-border-color);
   border-radius: 10px;
   width: 50px;
   height: 50px;
-  background-color: #1c1f23;
+  background-color: var(--background-color);
   display: flex;
 }
 
