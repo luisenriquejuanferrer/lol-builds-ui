@@ -6,7 +6,7 @@
   --card-background-color: #1c1f2375;
   --card-background-transparent-color: #ffffff00;
   --card-border-color: #a1a1a1;
-  --buildcard-slot-hover: rgb(214, 65, 65);
+  --buildcard-slot-hover: #d64141;
   --scrollbar-color: #575757;
   --text-color: #ffffff;
 }
@@ -343,6 +343,11 @@ h1 {
   height: 50px;
   background-color: var(--background-color);
   display: flex;
+}
+
+.build-items-trinket:hover {
+  border: 2px solid var(--buildcard-slot-hover);
+  cursor: pointer;
 }
 
 .build-items-trinket img {

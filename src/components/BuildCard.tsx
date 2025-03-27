@@ -7,6 +7,7 @@ interface BuildCardProps {
 
 const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems }) => {
   const [buildItems, setBuildItems] = useState<string[]>(initialItems);
+  const [trinketItem, setTrinketItem] = useState<string>("");
 
   const handleDrop = (
     event: React.DragEvent<HTMLDivElement>,
@@ -24,6 +25,16 @@ const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems }) => {
     setBuildItems(newBuildItems);
   };
 
+  const handleTrinketDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    const itemId = event.dataTransfer.getData("itemId");
+    if (!itemId) return;
+
+    setTrinketItem(
+      `https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/${itemId}.png`
+    );
+  };
+
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
   };
@@ -32,6 +43,10 @@ const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems }) => {
     const newBuildItems = [...buildItems];
     newBuildItems[index] = ""; // Elimina el ítem del slot
     setBuildItems(newBuildItems);
+  };
+
+  const handleTrinketClick = () => {
+    setTrinketItem(""); // Elimina el ítem del trinket
   };
 
   return (
@@ -66,10 +81,18 @@ const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems }) => {
             </div>
           ))}
         </div>
-        <div className="build-items-trinket"></div>
+        <div
+          className="build-items-trinket"
+          key={7}
+          onDrop={handleTrinketDrop}
+          onDragOver={handleDragOver}
+          onClick={handleTrinketClick}
+        >
+          {trinketItem && <img src={trinketItem} alt="Trinket Item" />}
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default BuildCard;

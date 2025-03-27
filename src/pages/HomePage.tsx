@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import ItemGrid from "../components/ItemGrid";
 import ItemFilters from "../components/ItemFilters";
 import ButtonAddBuildCard from "../components/buttons/ButtonAddBuildCard";
 import BuildCard from "../components/BuildCard";
-import { Item } from '../types/Item';
+import { Item } from "../types/Item";
 
 interface Filters {
   [key: string]: boolean;
@@ -83,7 +83,6 @@ const HomePage: React.FC = () => {
 
   const [buildCards, setBuildCards] = useState<BuildCardData[]>([]); // Lista de BuildCards
 
-
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
     setFilters((prevFilters) => ({
@@ -109,9 +108,13 @@ const HomePage: React.FC = () => {
       <ItemFilters filters={filters} onCheckboxChange={handleCheckboxChange} />
       <ItemGrid filters={filters} onDragStart={handleDragStart} />
       <div>
-        <ButtonAddBuildCard onClick={handleAddBuildCard}/>
+        <ButtonAddBuildCard onClick={handleAddBuildCard} />
         {buildCards.map((buildCard) => (
-          <BuildCard key={buildCard.id} id={buildCard.id} initialItems={buildCard.items} />
+          <BuildCard
+            key={buildCard.id}
+            id={buildCard.id}
+            initialItems={buildCard.items}
+          />
         ))}
       </div>
     </div>
