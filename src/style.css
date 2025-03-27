@@ -6,6 +6,7 @@
   --card-background-color: #1c1f2375;
   --card-background-transparent-color: #ffffff00;
   --card-border-color: #a1a1a1;
+  --buildcard-slot-hover: rgb(214, 65, 65);
   --scrollbar-color: #575757;
   --text-color: #ffffff;
 }
@@ -66,6 +67,7 @@ h1 {
 
 .checkbox-container input {
   margin-right: 8px;
+  cursor: pointer;
 }
 
 .checkbox-container label {
@@ -132,6 +134,7 @@ h1 {
   align-items: center;
   justify-content: center;
   background-color: var(--card-background-transparent-color);
+  cursor: pointer;
 }
 
 .item-grid-filter select {
@@ -170,6 +173,7 @@ h1 {
   border-radius: 10px;
   width: 50px;
   padding: 0px;
+  cursor: pointer;
 }
 
 .item-card h2 {
@@ -207,6 +211,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .btn-add-build-card i {
@@ -313,6 +318,11 @@ h1 {
   background-color: var(--background-color);
   border: 1px solid var(--card-border-color);
   border-radius: 10px;
+}
+
+.build-items-slot:hover {
+  border: 2px solid var(--buildcard-slot-hover);
+  cursor: pointer;
 }
 
 .build-items-grid img {
