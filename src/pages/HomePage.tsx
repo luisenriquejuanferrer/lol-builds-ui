@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ItemGrid from "../components/ItemGrid";
 import ItemFilters from "../components/ItemFilters";
-import ButtonAddBuildCard from "../components/Buttons/ButtonAddBuildCard";
+import ButtonAddBuildCard from "../components/buttons/ButtonAddBuildCard";
 import BuildCard from "../components/BuildCard";
 import { Item } from '../types/Item';
 
