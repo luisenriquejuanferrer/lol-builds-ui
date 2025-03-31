@@ -101,27 +101,41 @@ h1 {
 .btns-champions-items {
   width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--card-background-transparent-color);
 }
 
 .btn-champions {
   background-color: var(--card-background-transparent-color);
   border: 0;
-  width: 50%;
+  width: 40%;
   color: white;
   text-transform: uppercase;
   font-size: 14px;
   cursor: pointer;
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.btn-champions:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
 }
 
 .btn-items {
   background-color: var(--card-background-transparent-color);
   border: 0;
-  width: 50%;
+  width: 40%;
   color: white;
   text-transform: uppercase;
   font-size: 14px;
   cursor: pointer;
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.btn-items:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
 }
 
 .item-grid-search-and-filter {
@@ -380,6 +394,7 @@ h1 {
 .build-items-slot:hover {
   border: 2px solid var(--buildcard-slot-hover);
   cursor: pointer;
+  box-shadow: 0 0 5px #ff0040, 0 0 5px #ff0040, 0 0 14px #ff0040;
 }
 
 .build-items-grid img {
@@ -400,6 +415,7 @@ h1 {
 .build-items-trinket:hover {
   border: 2px solid var(--buildcard-slot-hover);
   cursor: pointer;
+  box-shadow: 0 0 5px #ff0040, 0 0 5px #ff0040, 0 0 14px #ff0040;
 }
 
 .build-items-trinket img {
