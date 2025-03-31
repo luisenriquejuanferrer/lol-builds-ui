@@ -98,6 +98,32 @@ h1 {
     var(--card-background-transparent-color);
 }
 
+.btns-champions-items {
+  width: 100%;
+  display: flex;
+  background-color: var(--card-background-transparent-color);
+}
+
+.btn-champions {
+  background-color: var(--card-background-transparent-color);
+  border: 0;
+  width: 50%;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-items {
+  background-color: var(--card-background-transparent-color);
+  border: 0;
+  width: 50%;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  cursor: pointer;
+}
+
 .item-grid-search-and-filter {
   display: flex;
   flex-direction: row;
@@ -206,12 +232,20 @@ h1 {
 }
 
 /* Estilos específicos de BuildCard */
+.build-card-section {
+  width: 350px;
+}
+.btns-add-import-build-card {
+  display: flex;
+  gap: 10px;
+}
+
 .btn-add-build-card {
   background-color: var(--card-background-color);
   border-radius: 6px;
   border: 1px solid var(--card-border-color);
-  width: 350px;
-  height: auto;
+  width: 170px;
+  height: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -220,6 +254,24 @@ h1 {
 }
 
 .btn-add-build-card i {
+  background-color: var(--card-background-transparent-color);
+  color: var(--text-color);
+}
+
+.btn-import-build-card {
+  background-color: var(--card-background-color);
+  border-radius: 6px;
+  border: 1px solid var(--card-border-color);
+  width: 170px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-import-build-card i {
   background-color: var(--card-background-transparent-color);
   color: var(--text-color);
 }

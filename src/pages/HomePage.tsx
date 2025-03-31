@@ -4,6 +4,7 @@ import ItemFilters from "../components/ItemFilters";
 import ButtonAddBuildCard from "../components/buttons/ButtonAddBuildCard";
 import BuildCard from "../components/BuildCard";
 import { Item } from "../types/Item";
+import ButtonImportBuildCard from "../components/buttons/ButtonImportBuildCard";
 
 interface Filters {
   [key: string]: boolean;
@@ -107,8 +108,11 @@ const HomePage: React.FC = () => {
     <div className="flex-container">
       <ItemFilters filters={filters} onCheckboxChange={handleCheckboxChange} />
       <ItemGrid filters={filters} onDragStart={handleDragStart} />
-      <div>
-        <ButtonAddBuildCard onClick={handleAddBuildCard} />
+      <div className="build-card-section">
+        <div className="btns-add-import-build-card">
+          <ButtonAddBuildCard onClick={handleAddBuildCard} />
+          <ButtonImportBuildCard onClick={handleAddBuildCard} />
+        </div>
         {buildCards.map((buildCard) => (
           <BuildCard
             key={buildCard.id}
