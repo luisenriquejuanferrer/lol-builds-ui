@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import ItemGrid from "../components/ItemGrid";
+import ChampionGrid from "../components/ChampionGrid";
 import ItemFilters from "../components/ItemFilters";
 import ButtonAddBuildCard from "../components/buttons/ButtonAddBuildCard";
 import BuildCard from "../components/BuildCard";
 import { Item } from "../types/Item";
+import { Champion } from "../types/Champion";
 import ButtonImportBuildCard from "../components/buttons/ButtonImportBuildCard";
 
 interface Filters {
@@ -83,6 +85,9 @@ const HomePage: React.FC = () => {
   }
 
   const [buildCards, setBuildCards] = useState<BuildCardData[]>([]); // Lista de BuildCards
+  const [activeGrid, setActiveGrid] = useState<"champions" | "items">(
+    "champions"
+  ); // Estado para el grid activo
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
@@ -92,8 +97,12 @@ const HomePage: React.FC = () => {
     }));
   };
 
-  const handleDragStart = (item: Item) => {
+  const handleItemDragStart = (item: Item) => {
     event.dataTransfer.setData("itemId", item.id);
+  };
+
+  const handleChampionDragStart = (champion: Champion) => {
+    event.dataTransfer.setData("championId", champion.id);
   };
 
   const handleAddBuildCard = () => {
@@ -107,7 +116,32 @@ const HomePage: React.FC = () => {
   return (
     <div className="flex-container">
       <ItemFilters filters={filters} onCheckboxChange={handleCheckboxChange} />
-      <ItemGrid filters={filters} onDragStart={handleDragStart} />
+      <div>
+        <div className="btns-champions-items">
+          <button
+            className="btn-champions"
+            onClick={() => setActiveGrid("champions")} // Cambia el grid activo a "champions"
+          >
+            Champions
+          </button>
+          <button
+            className="btn-items"
+            onClick={() => setActiveGrid("items")} // Cambia el grid activo a "items"
+          >
+            Items
+          </button>
+        </div>
+        <div>
+          <div
+            style={{ display: activeGrid === "champions" ? "block" : "none" }}
+          >
+            <ChampionGrid onDragStart={handleChampionDragStart} />
+          </div>
+          <div style={{ display: activeGrid === "items" ? "block" : "none" }}>
+            <ItemGrid filters={filters} onDragStart={handleItemDragStart} />
+          </div>
+        </div>
+      </div>
       <div className="build-card-section">
         <div className="btns-add-import-build-card">
           <ButtonAddBuildCard onClick={handleAddBuildCard} />

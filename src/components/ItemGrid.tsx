@@ -14,7 +14,7 @@ interface ItemGridProps {
 
 const ItemGrid: React.FC<ItemGridProps> = ({ filters, onDragStart }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc" | "">(""); // Estado para el orden de filtrado
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc" | "">("asc"); // Estado para el orden de filtrado
 
   const {
     data: itemsMap,
@@ -59,10 +59,6 @@ const ItemGrid: React.FC<ItemGridProps> = ({ filters, onDragStart }) => {
 
   return (
     <div className="item-grid-container">
-      <div className="btns-champions-items">
-        <button className="btn-champions">Champions</button>
-        <button className="btn-items">Items</button>
-      </div>
       <div className="item-grid-search-and-filter">
         <div className="item-grid-search">
           <i className="bi bi-search"></i>
