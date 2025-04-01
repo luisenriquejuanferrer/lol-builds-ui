@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Champion } from "../types/Champion";
 
 interface BuildCardProps {
   id: number;
@@ -8,6 +9,21 @@ interface BuildCardProps {
 const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems }) => {
   const [buildItems, setBuildItems] = useState<string[]>(initialItems);
   const [trinketItem, setTrinketItem] = useState<string>("");
+  const [buildChampion, setBuildChampion] = useState<string>("");
+  const [buildChampionId, setBuildChampionId] = useState<string>("");
+
+  const handleChampionDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    const championId = event.dataTransfer.getData("championId");
+
+    if (!championId) return;
+
+    setBuildChampion(
+      `https://ddragon.leagueoflegends.com/cdn/15.5.1/img/champion/${championId}.png`
+    );
+
+    setBuildChampionId(`${championId}`);
+  };
 
   const handleDrop = (
     event: React.DragEvent<HTMLDivElement>,
@@ -49,6 +65,11 @@ const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems }) => {
     setTrinketItem(""); // Elimina el ítem del trinket
   };
 
+  const handleChampionClick = () => {
+    setBuildChampion("");
+    setBuildChampionId("");
+  };
+
   return (
     <div className="build-card-container">
       <div className="build-card-header">
@@ -61,12 +82,16 @@ const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems }) => {
         </button>
       </div>
       <div className="build-card">
-        <div className="build-champion">
-          <img
-            src="https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/Kaisa.png"
-            alt="Kai'sa"
-          />
-          <h2>Kai'sa</h2>
+        <div
+          className="build-champion"
+          onDrop={handleChampionDrop}
+          onDragOver={handleDragOver}
+          onClick={handleChampionClick}
+        >
+          <div className="build-champion-slot">
+            {buildChampion && <img src={buildChampion} alt={buildChampion} />}
+          </div>
+          <h2>{buildChampionId || "Champion"}</h2>
         </div>
         <div className="build-items-grid">
           {buildItems.map((item, index) => (

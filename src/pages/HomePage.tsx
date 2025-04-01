@@ -116,18 +116,20 @@ const HomePage: React.FC = () => {
   return (
     <div className="flex-container">
       <ItemFilters filters={filters} onCheckboxChange={handleCheckboxChange} />
-      <div>
+      <div className="sticky">
         <div className="btns-champions-items">
           <button
             className="btn-champions"
             onClick={() => setActiveGrid("champions")} // Cambia el grid activo a "champions"
           >
+            <i className="bi bi-plus-circle"></i>
             Champions
           </button>
           <button
             className="btn-items"
             onClick={() => setActiveGrid("items")} // Cambia el grid activo a "items"
           >
+            <i className="bi bi-plus-circle"></i>
             Items
           </button>
         </div>

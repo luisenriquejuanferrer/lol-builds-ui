@@ -82,10 +82,13 @@ h1 {
   color: var(--text-color);
 }
 
-/* Estilos específicos de ItemGrid */
-.item-grid-container {
+.sticky {
   position: sticky;
   top: 2rem;
+}
+
+/* Estilos específicos de ItemGrid */
+.item-grid-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,6 +111,11 @@ h1 {
   align-items: center;
   justify-content: center;
   background-color: var(--card-background-transparent-color);
+  padding: 0px 12px 12px 12px;
+}
+
+.btns-champions-items i {
+  margin-right: 8px;
 }
 
 .btn-champions {
@@ -284,7 +292,7 @@ h1 {
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .champion-card img {
@@ -406,28 +414,45 @@ h1 {
 }
 
 .build-champion {
-  background-color: var(--card-background-transparent-color);
+  width: 65px;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.3rem;
+  background-color: var(--card-background-transparent-color);
+}
+
+.build-champion-slot {
+  background-color: var(--background-color);
+  border: 1px solid var(--card-border-color);
+  border-radius: 10px;
+  width: 65px;
+  height: 65px;
+}
+
+.build-champion-slot:hover {
+  border: 2px solid var(--buildcard-slot-hover);
+  cursor: pointer;
+  box-shadow: 0 0 5px #ff004080, 0 0 5px #ff004080, 0 0 14px #ff004080;
 }
 
 .build-champion img {
-  border: 1px solid var(--card-border-color);
-  width: 65px;
-  height: 65px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
 }
 
 .build-champion h2 {
   background-color: var(--card-background-transparent-color);
   color: var(--text-color);
-  width: 50px;
+  width: 100%;
+  height: auto;
   font-size: 0.8rem;
   font-weight: 700;
   font-weight: lighter;
+  text-align: center;
 }
 
 .build-items-grid {
