@@ -1,357 +1,103 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300;500&display=swap");
-@import url("node_modules/bootstrap-icons/font/bootstrap-icons.css");
+@import 'tailwindcss';
+/* @custom-variant dark (&:is(.dark *)); */
 
-:root {
-  --background-color: #0c0d13;
-  --card-background-color: #1c1f2375;
-  --card-background-transparent-color: #ffffff00;
-  --card-border-color: #a1a1a1;
-  --buildcard-slot-hover: #d64141;
-  --scrollbar-color: #575757;
-  --text-color: #ffffff;
+.dark {
+  --background: 219 50% 9%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 9%;
+  --secondary: 0 0% 14.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 0 0% 14.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  --ring: 0 0% 83.1%;
+  --chart-1: 220 70% 50%;
+  --chart-2: 160 60% 45%;
+  --chart-3: 30 80% 55%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 340 75% 55%;
+  --sidebar-background: 240 5.9% 10%;
+  --sidebar-foreground: 240 4.8% 95.9%;
+  --sidebar-primary: 224.3 76.3% 48%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 240 3.7% 15.9%;
+  --sidebar-accent-foreground: 240 4.8% 95.9%;
+  --sidebar-border: 240 3.7% 15.9%;
+  --sidebar-ring: 217.2 91.2% 59.8%;
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-lol-blue: #00ddff;
+  --color-lol-gold: #ffd700;
+  --color-lol-dark: #091428;
+  --color-lol-darkblue: #0a1428;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
 }
 
-/* Estilos Globales */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: var(--background-color);
-  font-family: "Open Sans", sans-serif;
-}
-
-html {
-  overflow-y: scroll;
-}
-
-h1 {
-  color: var(--text-color);
-  text-align: center;
-  margin: 20px 0px;
-  font-size: 1.5rem;
-}
-
-.flex-container {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 2rem;
-}
-
-/* Estilos específicos de ItemFilters */
-.item-filters {
-  position: sticky;
-  top: 2rem;
-  width: auto;
-  background-color: var(--card-background-color);
-  border: 1px solid var(--card-border-color);
-  border-radius: 10px;
-  padding: 15px;
-}
-
-.checkbox-container {
-  background-color: var(--card-background-transparent-color);
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.checkbox-container:last-child {
-  margin-bottom: 0;
-}
-
-.checkbox-container input {
-  margin-right: 8px;
-  cursor: pointer;
-}
-
-.checkbox-container label {
-  background-color: var(--card-background-transparent-color);
-  backdrop-filter: blur(5px);
-  color: var(--text-color);
-}
-
-/* Estilos específicos de ItemGrid */
-.item-grid-container {
-  position: sticky;
-  top: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  background-color: var(--card-background-color);
-  border: 1px solid var(--card-border-color);
-  border-radius: 10px;
-  padding: 15px;
-  width: 550px;
-  max-height: 768px; /* This works for now but should be adjusted in the future for different screen resolutions */
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-color)
-    var(--card-background-transparent-color);
-}
-
-.item-grid-search-and-filter {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  width: 100%;
-  background-color: var(--card-background-transparent-color);
-}
-
-.item-grid-search {
-  width: 75%;
-  display: flex;
-  border: 1px solid var(--card-border-color);
-  align-items: center;
-  align-self: start;
-  border-radius: 6px;
-}
-
-.item-grid-search i {
-  color: var(--text-color);
-  margin-inline: 8px;
-}
-
-.item-grid-search input {
-  all: unset;
-  width: 100%;
-  height: 25px;
-  font-weight: bold;
-  color: var(--text-color);
-  padding: 4px;
-  margin-left: 0;
-  text-align: left;
-}
-
-.item-grid-filter {
-  width: 25%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--card-background-transparent-color);
-  cursor: pointer;
-}
-
-.item-grid-filter select {
-  all: unset;
-  width: 100%;
-  height: 25px;
-  font-weight: lighter;
-  color: var(--text-color);
-  padding: 4px 8px;
-  margin-left: 0;
-  text-align: left;
-  background-color: var(--background-color);
-  border: 1px solid var(--card-border-color);
-  border-radius: 6px;
-  align-items: center;
-}
-
-.item-grid {
-  width: 100%;
-  display: grid;
-  background-color: var(--card-background-transparent-color);
-  gap: 0.3rem 1rem;
-  grid-template-columns: repeat(6, 1fr);
-  overflow-y: auto;
-}
-
-.item-grid.no-items {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.item-card {
-  background-color: var(--card-background-transparent-color);
-  margin: auto;
-  border-radius: 10px;
-  width: 50px;
-  padding: 0px;
-  cursor: pointer;
-}
-
-.item-card h2 {
-  background-color: var(--card-background-transparent-color);
-  color: var(--text-color);
-  font-size: 0.9rem;
-  font-weight: bold;
-}
-
-.item-card img {
-  border: 1px solid var(--card-border-color);
-  width: 50px;
-  border-radius: 10px;
-}
-
-.item-grid p {
-  background-color: var(--card-background-transparent-color);
-  justify-content: center;
-  align-items: center;
-  color: var(--text-color);
-  font-size: 1rem;
-  font-weight: 700;
-  font-weight: lighter;
-  width: 100%;
-}
-
-/* Estilos específicos de BuildCard */
-.btn-add-build-card {
-  background-color: var(--card-background-color);
-  border-radius: 6px;
-  border: 1px solid var(--card-border-color);
-  width: 350px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.btn-add-build-card i {
-  background-color: var(--card-background-transparent-color);
-  color: var(--text-color);
-}
-
-.build-card-container {
-  margin-top: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.build-card-header {
-  padding: 0px 6px;
-  width: 100%;
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 4px;
-}
-
-.build-card-header p {
-  color: var(--text-color);
-  font-size: 1rem;
-  font-weight: 700;
-  font-weight: lighter;
-  margin-right: auto;
-  justify-content: start;
-  align-items: start;
-  align-self: flex-end;
-  margin-bottom: 0px;
-}
-
-.build-card-header button {
-  width: 25px;
-  height: 25px;
-  background-color: var(--card-background-color);
-  color: var(--text-color);
-  border: 1px solid var(--card-border-color);
-  border-radius: 3px;
-  justify-content: center;
-  align-items: center;
-}
-
-.build-card-header i {
-  background-color: var(--card-background-transparent-color);
-}
-
-.build-card {
-  background-color: var(--card-background-color);
-  border-radius: 10px;
-  border: 1px solid var(--card-border-color);
-  width: 350px;
-  height: 125px;
-  display: flex;
-  gap: 1rem;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.build-champion {
-  background-color: var(--card-background-transparent-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
-}
-
-.build-champion img {
-  border: 1px solid var(--card-border-color);
-  width: 65px;
-  height: 65px;
-  border-radius: 10px;
-}
-
-.build-champion h2 {
-  background-color: var(--card-background-transparent-color);
-  color: var(--text-color);
-  width: 50px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  font-weight: lighter;
-}
-
-.build-items-grid {
-  background-color: var(--card-background-transparent-color);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.3rem 0.5rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.build-items-slot {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--background-color);
-  border: 1px solid var(--card-border-color);
-  border-radius: 10px;
-}
-
-.build-items-slot:hover {
-  border: 2px solid var(--buildcard-slot-hover);
-  cursor: pointer;
-}
-
-.build-items-grid img {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-}
-
-.build-items-trinket {
-  border: 1px solid var(--card-border-color);
-  border-radius: 10px;
-  width: 50px;
-  height: 50px;
-  background-color: var(--background-color);
-  display: flex;
-}
-
-.build-items-trinket:hover {
-  border: 2px solid var(--buildcard-slot-hover);
-  cursor: pointer;
-}
-
-.build-items-trinket img {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  max-width: 1400px;
 }

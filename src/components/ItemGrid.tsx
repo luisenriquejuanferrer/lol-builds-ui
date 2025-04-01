@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchItems } from "../services/itemService";
+import { fetchItems } from "../services/ItemService";
 import { Item } from "../types/Item";
 
 interface Filters {
