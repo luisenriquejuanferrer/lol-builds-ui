@@ -113,6 +113,10 @@ const HomePage: React.FC = () => {
     setBuildCards((prevBuildCards) => [...prevBuildCards, newBuildCard]);
   };
 
+  const handleDeleteBuildCard = (id: number) => {
+    setBuildCards(buildCards.filter((card) => card.id !== id));
+  };
+
   return (
     <div className="flex-container">
       <ItemFilters filters={filters} onCheckboxChange={handleCheckboxChange} />
@@ -154,6 +158,7 @@ const HomePage: React.FC = () => {
             key={buildCard.id}
             id={buildCard.id}
             initialItems={buildCard.items}
+            onDelete={handleDeleteBuildCard}
           />
         ))}
       </div>

@@ -365,6 +365,10 @@ h1 {
   justify-content: center;
 }
 
+.build-card-container button {
+  cursor: pointer;
+}
+
 .build-card-header {
   padding: 0px 6px;
   width: 100%;

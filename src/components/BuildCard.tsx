@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Champion } from "../types/Champion";
 
 interface BuildCardProps {
   id: number;
   initialItems: string[];
+  onDelete: (id: number) => void;
 }
 
-const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems }) => {
+const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems, onDelete }) => {
   const [buildItems, setBuildItems] = useState<string[]>(initialItems);
   const [trinketItem, setTrinketItem] = useState<string>("");
   const [buildChampion, setBuildChampion] = useState<string>("");
@@ -77,7 +77,8 @@ const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems }) => {
         <button>
           <i className="bi bi-pencil-square"></i>
         </button>
-        <button>
+        <button
+          onClick={() => onDelete(id)} >
           <i className="bi bi-trash"></i>
         </button>
       </div>
