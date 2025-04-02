@@ -19,12 +19,16 @@ const BuildCard: React.FC<BuildCardProps> = ({
   const [buildChampion, setBuildChampion] = useState<string>(
     buildChampionId.startsWith("http")
       ? buildChampionId
-      : `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/champion/${buildChampionId}.png`
+      : buildChampionId
+      ? `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/champion/${buildChampionId}.png`
+      : ""
   );
   const [trinket, setTrinket] = useState<string>(
     trinketItem.startsWith("http")
       ? trinketItem
-      : `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/item/${trinketItem}.png`
+      : trinketItem
+      ? `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/item/${trinketItem}.png`
+      : ""
   );
   const [buildName, setBuildName] = useState<string>("Empty Build");
   const [isEditing, setIsEditing] = useState<boolean>(false);
