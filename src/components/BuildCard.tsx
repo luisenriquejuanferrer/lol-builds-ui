@@ -2,19 +2,48 @@ import { useState } from "react";
 
 interface BuildCardProps {
   id: number;
+  buildChampionId: string;
   initialItems: string[];
+  trinketItem: string;
   onDelete: (id: number) => void;
 }
 
 const BuildCard: React.FC<BuildCardProps> = ({
   id,
+  buildChampionId,
   initialItems,
+  trinketItem,
   onDelete,
 }) => {
   const [buildItems, setBuildItems] = useState<string[]>(initialItems);
-  const [trinketItem, setTrinketItem] = useState<string>("");
-  const [buildChampion, setBuildChampion] = useState<string>("");
-  const [buildChampionId, setBuildChampionId] = useState<string>("");
+  const [buildChampion, setBuildChampion] = useState<string>(
+    buildChampionId.startsWith("http")
+      ? buildChampionId
+      : `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/champion/${buildChampionId}.png`
+  );
+  const [trinket, setTrinket] = useState<string>(
+    trinketItem.startsWith("http")
+      ? trinketItem
+      : `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/item/${trinketItem}.png`
+  );
+  const [buildName, setBuildName] = useState<string>("Empty Build");
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const handleEditClick = () => {
+    setIsEditing(true); // Activa el modo de edición
+  };
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBuildName(event.target.value); // Actualiza el nombre de la build
+  };
+
+  const handleNameSubmit = () => {
+    setIsEditing(false); // Desactiva el modo de edición
+  };
+
+  const handleNameBlur = () => {
+    setIsEditing(false); // Desactiva el modo de edición al perder el foco
+  };
 
   const handleChampionDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -24,7 +53,6 @@ const BuildCard: React.FC<BuildCardProps> = ({
     if (!championId || !championImage) return;
 
     setBuildChampion(championImage);
-    setBuildChampionId(championId);
   };
 
   const handleDrop = (
@@ -33,23 +61,23 @@ const BuildCard: React.FC<BuildCardProps> = ({
   ) => {
     event.preventDefault();
     const itemId = event.dataTransfer.getData("itemId");
-    const itemImage = event.dataTransfer.getData("itemImage"); // Obtén la URL de la imagen
+    const itemImage = event.dataTransfer.getData("itemImage");
     const newBuildItems = [...buildItems];
 
     if (!itemId || !itemImage) return;
 
-    newBuildItems[index] = itemImage; // Usa la URL de la imagen directamente
+    newBuildItems[index] = itemImage;
     setBuildItems(newBuildItems);
   };
 
   const handleTrinketDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const itemId = event.dataTransfer.getData("itemId");
-    const itemImage = event.dataTransfer.getData("itemImage"); // Obtén la URL de la imagen
+    const itemImage = event.dataTransfer.getData("itemImage");
 
     if (!itemId || !itemImage) return;
 
-    setTrinketItem(itemImage); // Usa la URL de la imagen directamente
+    setTrinket(itemImage);
   };
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
@@ -63,20 +91,54 @@ const BuildCard: React.FC<BuildCardProps> = ({
   };
 
   const handleTrinketClick = () => {
-    setTrinketItem(""); // Elimina el ítem del trinket
+    setTrinket(""); // Elimina el ítem del trinket
   };
 
   const handleChampionClick = () => {
-    setBuildChampion("");
-    setBuildChampionId("");
+    setBuildChampion(""); // Elimina el campeón
+  };
+
+  const handleExport = () => {
+    const buildData = {
+      buildChampionId: buildChampion.split("/").pop()?.split(".")[0] || "",
+      buildItems,
+      trinketItem: trinket.split("/").pop()?.split(".")[0] || "",
+    };
+
+    const json = JSON.stringify(buildData, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `build-${id}.json`;
+    link.click();
+
+    URL.revokeObjectURL(url);
   };
 
   return (
     <div className="build-card-container">
       <div className="build-card-header">
-        <p>Empty Build</p>
-        <button>
+        {isEditing ? (
+          <input
+            type="text"
+            value={buildName}
+            onChange={handleNameChange}
+            onBlur={handleNameBlur}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") handleNameSubmit();
+            }}
+            autoFocus
+          />
+        ) : (
+          <p onClick={handleEditClick}>{buildName}</p>
+        )}
+        <button onClick={handleEditClick}>
           <i className="bi bi-pencil-square"></i>
+        </button>
+        <button onClick={handleExport}>
+          <i className="bi bi-box-arrow-up-left"></i>
         </button>
         <button onClick={() => onDelete(id)}>
           <i className="bi bi-trash"></i>
@@ -90,9 +152,9 @@ const BuildCard: React.FC<BuildCardProps> = ({
           onClick={handleChampionClick}
         >
           <div className="build-champion-slot">
-            {buildChampion && <img src={buildChampion} alt={buildChampion} />}
+            {buildChampion && <img src={buildChampion} alt="Champion" />}
           </div>
-          <h2>{buildChampionId || "Champion"}</h2>
+          <h2>{buildChampion.split("/").pop()?.split(".")[0] || "Champion"}</h2>
         </div>
         <div className="build-items-grid">
           {buildItems.map((item, index) => (
@@ -109,12 +171,11 @@ const BuildCard: React.FC<BuildCardProps> = ({
         </div>
         <div
           className="build-items-trinket"
-          key={7}
           onDrop={handleTrinketDrop}
           onDragOver={handleDragOver}
           onClick={handleTrinketClick}
         >
-          {trinketItem && <img src={trinketItem} alt="Trinket Item" />}
+          {trinket && <img src={trinket} alt="Trinket Item" />}
         </div>
       </div>
     </div>

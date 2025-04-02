@@ -80,8 +80,10 @@ const HomePage: React.FC = () => {
   });
 
   interface BuildCardData {
-    id: number; // Identificador único para cada BuildCard
-    items: string[]; // Estado inicial de los ítems en la BuildCard
+    id: number;
+    buildChampionId: string; // Identificador único para cada BuildCard
+    initialItems: string[];
+    trinketItem: string; // Estado inicial de los ítems en la BuildCard
   }
 
   const [buildCards, setBuildCards] = useState<BuildCardData[]>([]); // Lista de BuildCards
@@ -107,14 +109,56 @@ const HomePage: React.FC = () => {
 
   const handleAddBuildCard = () => {
     const newBuildCard: BuildCardData = {
-      id: Date.now(), // Usamos un timestamp como identificador único
-      items: Array(6).fill(""), // Estado inicial de los ítems en la BuildCard
+      id: Date.now(), // Genera un ID único basado en el timestamp actual
+      buildChampionId: "", // Inicializa sin un campeón
+      initialItems: Array(6).fill(""), // Inicializa con 6 slots vacíos
+      trinketItem: "", // Inicializa sin un trinket
     };
+
     setBuildCards((prevBuildCards) => [...prevBuildCards, newBuildCard]);
   };
 
-  const handleDeleteBuildCard = (id: number) => {
-    setBuildCards(buildCards.filter((card) => card.id !== id));
+  const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const json = JSON.parse(e.target?.result as string);
+
+        // Validar la estructura del JSON
+        if (
+          !json.buildChampionId ||
+          typeof json.buildChampionId !== "string" ||
+          !Array.isArray(json.buildItems)
+        ) {
+          console.error("El archivo JSON no tiene la estructura correcta.");
+          return;
+        }
+
+        // Procesar el JSON para asegurarse de que las URLs sean correctas
+        const newBuildCard: BuildCardData = {
+          id: Date.now(),
+          initialItems: json.buildItems.map((item: string) =>
+            item.startsWith("http")
+              ? item
+              : `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/item/${item}.png`
+          ),
+          buildChampionId: json.buildChampionId.startsWith("http")
+            ? json.buildChampionId
+            : `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/champion/${json.buildChampionId}.png`,
+          trinketItem: json.trinketItem.startsWith("http")
+            ? json.trinketItem
+            : `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/item/${json.trinketItem}.png`,
+        };
+
+        setBuildCards((prevBuildCards) => [...prevBuildCards, newBuildCard]);
+      } catch (error) {
+        console.error("Error al importar el archivo JSON:", error);
+      }
+    };
+    reader.readAsText(file);
   };
 
   return (
@@ -151,14 +195,29 @@ const HomePage: React.FC = () => {
       <div className="build-card-section">
         <div className="btns-add-import-build-card">
           <ButtonAddBuildCard onClick={handleAddBuildCard} />
-          <ButtonImportBuildCard onClick={handleAddBuildCard} />
+          <input
+            type="file"
+            accept="application/json"
+            onChange={handleImport}
+            style={{ display: "none" }}
+            id="import-build"
+          />
+          <label htmlFor="import-build" className="btn-import-build-card">
+            <i className="bi bi-box-arrow-down"></i> Import Build
+          </label>
         </div>
         {buildCards.map((buildCard) => (
           <BuildCard
             key={buildCard.id}
             id={buildCard.id}
-            initialItems={buildCard.items}
-            onDelete={handleDeleteBuildCard}
+            buildChampionId={buildCard.buildChampionId}
+            initialItems={buildCard.initialItems}
+            trinketItem={buildCard.trinketItem}
+            onDelete={(id) =>
+              setBuildCards((prevBuildCards) =>
+                prevBuildCards.filter((card) => card.id !== id)
+              )
+            }
           />
         ))}
       </div>
