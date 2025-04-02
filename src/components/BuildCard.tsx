@@ -6,7 +6,11 @@ interface BuildCardProps {
   onDelete: (id: number) => void;
 }
 
-const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems, onDelete }) => {
+const BuildCard: React.FC<BuildCardProps> = ({
+  id,
+  initialItems,
+  onDelete,
+}) => {
   const [buildItems, setBuildItems] = useState<string[]>(initialItems);
   const [trinketItem, setTrinketItem] = useState<string>("");
   const [buildChampion, setBuildChampion] = useState<string>("");
@@ -15,14 +19,12 @@ const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems, onDelete }) => 
   const handleChampionDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const championId = event.dataTransfer.getData("championId");
+    const championImage = event.dataTransfer.getData("championImage");
 
-    if (!championId) return;
+    if (!championId || !championImage) return;
 
-    setBuildChampion(
-      `https://ddragon.leagueoflegends.com/cdn/15.5.1/img/champion/${championId}.png`
-    );
-
-    setBuildChampionId(`${championId}`);
+    setBuildChampion(championImage);
+    setBuildChampionId(championId);
   };
 
   const handleDrop = (
@@ -31,24 +33,23 @@ const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems, onDelete }) => 
   ) => {
     event.preventDefault();
     const itemId = event.dataTransfer.getData("itemId");
+    const itemImage = event.dataTransfer.getData("itemImage"); // Obtén la URL de la imagen
     const newBuildItems = [...buildItems];
 
-    if (!itemId) return;
+    if (!itemId || !itemImage) return;
 
-    newBuildItems[
-      index
-    ] = `https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/${itemId}.png`;
+    newBuildItems[index] = itemImage; // Usa la URL de la imagen directamente
     setBuildItems(newBuildItems);
   };
 
   const handleTrinketDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const itemId = event.dataTransfer.getData("itemId");
-    if (!itemId) return;
+    const itemImage = event.dataTransfer.getData("itemImage"); // Obtén la URL de la imagen
 
-    setTrinketItem(
-      `https://ddragon.leagueoflegends.com/cdn/15.5.1/img/item/${itemId}.png`
-    );
+    if (!itemId || !itemImage) return;
+
+    setTrinketItem(itemImage); // Usa la URL de la imagen directamente
   };
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
@@ -77,8 +78,7 @@ const BuildCard: React.FC<BuildCardProps> = ({ id, initialItems, onDelete }) => 
         <button>
           <i className="bi bi-pencil-square"></i>
         </button>
-        <button
-          onClick={() => onDelete(id)} >
+        <button onClick={() => onDelete(id)}>
           <i className="bi bi-trash"></i>
         </button>
       </div>

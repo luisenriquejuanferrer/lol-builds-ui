@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { fetchChampions } from "../services/championService";
 import { Champion } from "../types/Champion";
 
@@ -7,7 +7,7 @@ interface ChampionGridProps {
   onDragStart: (champion: Champion) => void;
 }
 
-const ChampionGrid: React.FC<ChampionGridProps> = ({ onDragStart }) => {
+const ChampionGrid: React.FC<ChampionGridProps> = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc" | "">("asc");
 
@@ -74,7 +74,10 @@ const ChampionGrid: React.FC<ChampionGridProps> = ({ onDragStart }) => {
               key={champion.id}
               className="champion-card"
               draggable
-              onDragStart={() => onDragStart(champion)}
+              onDragStart={(event) => {
+                event.dataTransfer.setData("championId", champion.id);
+                event.dataTransfer.setData("championImage", champion.image);
+              }}
               title={champion.id}
             >
               <img src={champion.image} alt={champion.id} />

@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { fetchItems } from "../services/itemService";
 import { Item } from "../types/Item";
 
@@ -12,7 +12,7 @@ interface ItemGridProps {
   onDragStart: (item: Item) => void;
 }
 
-const ItemGrid: React.FC<ItemGridProps> = ({ filters, onDragStart }) => {
+const ItemGrid: React.FC<ItemGridProps> = ({ filters }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc" | "">("asc"); // Estado para el orden de filtrado
 
@@ -92,7 +92,10 @@ const ItemGrid: React.FC<ItemGridProps> = ({ filters, onDragStart }) => {
               key={item.id}
               className="item-card"
               draggable
-              onDragStart={() => onDragStart(item)}
+              onDragStart={(event) => {
+                event.dataTransfer.setData("itemId", item.id.toString());
+                event.dataTransfer.setData("itemImage", item.image);
+              }}
               title={item.name}
             >
               <img src={item.image} alt={item.name} />
