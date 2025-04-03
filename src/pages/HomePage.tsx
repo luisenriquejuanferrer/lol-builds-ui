@@ -7,6 +7,7 @@ import ButtonAddBuildCard from "../components/buttons/ButtonAddBuildCard";
 import ButtonImportBuildCard from "../components/buttons/ButtonImportBuildCard";
 import { Champion } from "../types/Champion";
 import { Item } from "../types/Item";
+import CosmicBackground from "../CosmicBackground";
 
 interface Filters {
   [key: string]: boolean;
@@ -121,29 +122,26 @@ const HomePage: React.FC = () => {
   const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
-  
+
     const reader = new FileReader();
     reader.onload = (e) => {
       try {
         const json = JSON.parse(e.target?.result as string);
-  
+
         // Validar la estructura del JSON
         if (
-          !json.buildChampionId ||
-          typeof json.buildChampionId !== "string" ||
+          typeof json.buildChampionId !== "string" || // Verifica que sea un string, incluso si es ""
           !Array.isArray(json.buildItems)
         ) {
           console.error("El archivo JSON no tiene la estructura correcta.");
           return;
         }
-  
+
         // Procesar el JSON para asegurarse de que las URLs sean correctas
         const newBuildCard: BuildCardData = {
           id: Date.now(),
-          initialItems: json.buildItems.map((item: string) =>
-            item && item.startsWith("http")
-              ? item
-              : "" // Si el slot está vacío, lo dejamos como una cadena vacía
+          initialItems: json.buildItems.map(
+            (item: string) => (item && item.startsWith("http") ? item : "") // Si el slot está vacío, lo dejamos como una cadena vacía
           ),
           buildChampionId: json.buildChampionId.startsWith("http")
             ? json.buildChampionId
@@ -152,7 +150,7 @@ const HomePage: React.FC = () => {
             ? json.trinketItem
             : `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/item/${json.trinketItem}.png`,
         };
-  
+
         setBuildCards((prevBuildCards) => [...prevBuildCards, newBuildCard]);
       } catch (error) {
         console.error("Error al importar el archivo JSON:", error);
@@ -195,16 +193,7 @@ const HomePage: React.FC = () => {
       <div className="build-card-section">
         <div className="btns-add-import-build-card">
           <ButtonAddBuildCard onClick={handleAddBuildCard} />
-          <input
-            type="file"
-            accept="application/json"
-            onChange={handleImport}
-            style={{ display: "none" }}
-            id="import-build"
-          />
-          <label htmlFor="import-build" className="btn-import-build-card">
-            <i className="bi bi-box-arrow-down"></i> Import Build
-          </label>
+          <ButtonImportBuildCard onImport={handleImport} />
         </div>
         {buildCards.map((buildCard) => (
           <BuildCard
@@ -221,6 +210,7 @@ const HomePage: React.FC = () => {
           />
         ))}
       </div>
+      <CosmicBackground/>
     </div>
   );
 };
