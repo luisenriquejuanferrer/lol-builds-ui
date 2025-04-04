@@ -104,9 +104,11 @@ const BuildCard: React.FC<BuildCardProps> = ({
 
   const handleExport = () => {
     const buildData = {
-      buildChampionId: buildChampion.split("/").pop()?.split(".")[0] || "",
-      buildItems,
-      trinketItem: trinket.split("/").pop()?.split(".")[0] || "",
+      buildChampionId: buildChampion.split("/").pop()?.split(".")[0] || "", // Extrae el ID del campeón
+      buildItems: buildItems.map((item) =>
+        item ? item.split("/").pop()?.split(".")[0] : "" // Extrae el ID de cada ítem
+      ),
+      trinketItem: trinket.split("/").pop()?.split(".")[0] || "", // Extrae el ID del trinket
     };
 
     const json = JSON.stringify(buildData, null, 2);

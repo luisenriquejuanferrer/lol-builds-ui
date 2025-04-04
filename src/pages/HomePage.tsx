@@ -87,10 +87,10 @@ const HomePage: React.FC = () => {
     trinketItem: string; // Estado inicial de los ítems en la BuildCard
   }
 
-  const [buildCards, setBuildCards] = useState<BuildCardData[]>([]); // Lista de BuildCards
+  const [buildCards, setBuildCards] = useState<BuildCardData[]>([]);
   const [activeGrid, setActiveGrid] = useState<"champions" | "items">(
     "champions"
-  ); // Estado para el grid activo
+  );
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
@@ -121,7 +121,11 @@ const HomePage: React.FC = () => {
 
   const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (!file) return;
+
+    if (!file) {
+      console.log("No se ha podido importar");
+      return;
+    }
 
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -131,7 +135,8 @@ const HomePage: React.FC = () => {
         // Validar la estructura del JSON
         if (
           typeof json.buildChampionId !== "string" || // Verifica que sea un string, incluso si es ""
-          !Array.isArray(json.buildItems)
+          !Array.isArray(json.buildItems) || // Verifica que sea un array
+          typeof json.trinketItem !== "string"
         ) {
           console.error("El archivo JSON no tiene la estructura correcta.");
           return;
@@ -141,14 +146,17 @@ const HomePage: React.FC = () => {
         const newBuildCard: BuildCardData = {
           id: Date.now(),
           initialItems: json.buildItems.map(
-            (item: string) => (item && item.startsWith("http") ? item : "") // Si el slot está vacío, lo dejamos como una cadena vacía
+            (item: string) =>
+              item
+                ? `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/item/${item}.png`
+                : "" // Si el slot está vacío, lo dejamos como una cadena vacía
           ),
-          buildChampionId: json.buildChampionId.startsWith("http")
-            ? json.buildChampionId
-            : `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/champion/${json.buildChampionId}.png`,
-          trinketItem: json.trinketItem.startsWith("http")
-            ? json.trinketItem
-            : `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/item/${json.trinketItem}.png`,
+          buildChampionId: json.buildChampionId
+            ? `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/champion/${json.buildChampionId}.png`
+            : "", // Si no hay campeón, dejamos el slot vacío
+          trinketItem: json.trinketItem
+            ? `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/item/${json.trinketItem}.png`
+            : "", // Si no hay trinket, dejamos el slot vacío
         };
 
         setBuildCards((prevBuildCards) => [...prevBuildCards, newBuildCard]);
@@ -157,6 +165,7 @@ const HomePage: React.FC = () => {
       }
     };
     reader.readAsText(file);
+    console.log("Se ha importado correctamente.");
   };
 
   return (
@@ -210,7 +219,7 @@ const HomePage: React.FC = () => {
           />
         ))}
       </div>
-      <CosmicBackground/>
+      <CosmicBackground />
     </div>
   );
 };
