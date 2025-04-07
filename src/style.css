@@ -3,9 +3,9 @@
 
 :root {
   --background-color: #0c0d13;
-  --card-background-color: #1c1f2375;
+  --card-background-color: #2f303175;
   --card-background-transparent-color: #ffffff00;
-  --card-border-color: #a1a1a1;
+  --card-border-color: #a1a1a15b;
   --buildcard-slot-hover: #d64141;
   --scrollbar-color: #575757;
   --text-color: #ffffff;
@@ -54,6 +54,7 @@ h1 {
   border: 1px solid var(--card-border-color);
   border-radius: 10px;
   padding: 15px;
+  box-shadow: 0 0 6px rgba(100, 100, 255, 0.705);
 }
 
 .checkbox-container {
@@ -103,6 +104,7 @@ h1 {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-color)
     var(--card-background-transparent-color);
+  box-shadow: 0 0 6px rgba(100, 100, 255, 0.705);
 }
 
 .btns-champions-items {
@@ -164,6 +166,7 @@ h1 {
   width: 75%;
   display: flex;
   border: 1px solid var(--card-border-color);
+  background-color: var(--background-color);
   align-items: center;
   align-self: start;
   border-radius: 6px;
@@ -322,7 +325,8 @@ h1 {
 }
 
 .btn-add-build-card {
-  background-color: var(--card-background-color);
+  background-color: rgba(113, 230, 113, 0.753);
+  box-shadow: 0 0 6px rgba(113, 230, 113, 0.753);
   border-radius: 6px;
   border: 1px solid var(--card-border-color);
   width: 170px;
@@ -340,7 +344,8 @@ h1 {
 }
 
 .btn-import-build-card {
-  background-color: var(--card-background-color);
+  background-color: rgba(224, 166, 83, 0.925);
+  box-shadow: 0 0 6px rgba(224, 166, 83, 0.925);
   border-radius: 6px;
   border: 1px solid var(--card-border-color);
   width: 170px;
@@ -367,6 +372,10 @@ h1 {
 
 .build-card-container button {
   cursor: pointer;
+}
+
+.build-card-container button:hover {
+  box-shadow: 0 0 6px rgba(100, 100, 255, 0.705);
 }
 
 .build-card-header {
@@ -426,6 +435,7 @@ h1 {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 6px rgba(100, 100, 255, 0.705);
 }
 
 .build-champion {
