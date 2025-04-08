@@ -109,11 +109,12 @@ h1 {
 
 .btns-champions-items {
   width: 100%;
+  gap: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--card-background-transparent-color);
-  padding: 0px 12px 12px 12px;
+  margin: 0px 0px 12px 0px;
 }
 
 .btns-champions-items i {
@@ -121,9 +122,10 @@ h1 {
 }
 
 .btn-champions {
+  display: flex;
   background-color: var(--card-background-transparent-color);
   border: 0;
-  width: 40%;
+  width: 100%;
   color: white;
   text-transform: uppercase;
   font-size: 14px;
@@ -137,9 +139,10 @@ h1 {
 }
 
 .btn-items {
+  display: flex;
   background-color: var(--card-background-transparent-color);
   border: 0;
-  width: 40%;
+  width: 100%;
   color: white;
   text-transform: uppercase;
   font-size: 14px;

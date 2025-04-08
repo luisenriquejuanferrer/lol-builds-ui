@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import CosmicBackground from "../CosmicBackground";
 import BuildCard from "../components/BuildCard";
 import ChampionGrid from "../components/ChampionGrid";
 import ItemFilters from "../components/ItemFilters";
 import ItemGrid from "../components/ItemGrid";
 import ButtonAddBuildCard from "../components/buttons/ButtonAddBuildCard";
 import ButtonImportBuildCard from "../components/buttons/ButtonImportBuildCard";
+import ButtonShowChampions from "../components/buttons/ButtonShowChampions";
+import ButtonShowItems from "../components/buttons/ButtonShowItems";
 import { Champion } from "../types/Champion";
 import { Item } from "../types/Item";
-import CosmicBackground from "../CosmicBackground";
 
 interface Filters {
   [key: string]: boolean;
@@ -173,20 +175,8 @@ const HomePage: React.FC = () => {
       <ItemFilters filters={filters} onCheckboxChange={handleCheckboxChange} />
       <div className="sticky">
         <div className="btns-champions-items">
-          <button
-            className="btn-champions"
-            onClick={() => setActiveGrid("champions")} // Cambia el grid activo a "champions"
-          >
-            <i className="bi bi-plus-circle"></i>
-            Champions
-          </button>
-          <button
-            className="btn-items"
-            onClick={() => setActiveGrid("items")} // Cambia el grid activo a "items"
-          >
-            <i className="bi bi-plus-circle"></i>
-            Items
-          </button>
+          <ButtonShowChampions onClick={() => setActiveGrid("champions")} />
+          <ButtonShowItems onClick={() => setActiveGrid("items")} />
         </div>
         <div>
           <div
