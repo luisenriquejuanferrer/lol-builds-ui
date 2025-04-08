@@ -8,8 +8,7 @@ const ButtonShowItems: React.FC<ButtonShowItemsProps> = ({ onClick }) => {
         className="btn-items"
         onClick={onClick} // Cambia el grid activo a "items"
       >
-        <i className="bi bi-plus-circle"></i>
-        Items
+        <i className="bi bi-plus-square" />
       </button>
     </div>
   );
