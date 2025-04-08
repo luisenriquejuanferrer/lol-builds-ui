@@ -91,7 +91,7 @@ const CosmicBackground: React.FC = () => {
 
       // Dibujar puntos estelares
       const spacing = 28;
-      const dotSize = 1.2;
+      const dotSize = 1;
       const rows = Math.ceil(canvas.height / spacing);
       const cols = Math.ceil(canvas.width / spacing);
 
