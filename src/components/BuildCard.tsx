@@ -20,14 +20,14 @@ const BuildCard: React.FC<BuildCardProps> = ({
     buildChampionId.startsWith("http")
       ? buildChampionId
       : buildChampionId
-      ? `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/champion/${buildChampionId}.png`
+      ? `https://ddragon.leagueoflegends.com/cdn/15.7.1/img/champion/${buildChampionId}.png`
       : ""
   );
   const [trinket, setTrinket] = useState<string>(
     trinketItem.startsWith("http")
       ? trinketItem
       : trinketItem
-      ? `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/item/${trinketItem}.png`
+      ? `https://ddragon.leagueoflegends.com/cdn/15.7.1/img/item/${trinketItem}.png`
       : ""
   );
   const [buildName, setBuildName] = useState<string>("Empty Build");
