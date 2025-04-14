@@ -150,14 +150,14 @@ const HomePage: React.FC = () => {
           initialItems: json.buildItems.map(
             (item: string) =>
               item
-                ? `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/item/${item}.png`
+                ? `https://ddragon.leagueoflegends.com/cdn/15.7.1/img/item/${item}.png`
                 : "" // Si el slot está vacío, lo dejamos como una cadena vacía
           ),
           buildChampionId: json.buildChampionId
-            ? `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/champion/${json.buildChampionId}.png`
+            ? `https://ddragon.leagueoflegends.com/cdn/15.7.1/img/champion/${json.buildChampionId}.png`
             : "", // Si no hay campeón, dejamos el slot vacío
           trinketItem: json.trinketItem
-            ? `https://ddragon.leagueoflegends.com/cdn/15.6.1/img/item/${json.trinketItem}.png`
+            ? `https://ddragon.leagueoflegends.com/cdn/15.7.1/img/item/${json.trinketItem}.png`
             : "", // Si no hay trinket, dejamos el slot vacío
         };
 
