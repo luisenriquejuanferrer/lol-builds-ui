@@ -209,7 +209,7 @@ const HomePage: React.FC = () => {
           />
         ))}
       </div>
-      <CosmicBackground />
+      {/* <CosmicBackground /> */}
     </div>
   );
 };
