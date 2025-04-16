@@ -74,10 +74,6 @@ h1 {
   cursor: pointer;
 }
 
-/* .checkbox-container input:hover {
-  box-shadow: 0 0 2px #00ffccad, 0 0 5px #00ffcc6e, 0 0 20px #00ffcc5d;
-} */
-
 .checkbox-container label {
   background-color: var(--card-background-transparent-color);
   color: var(--text-color);
@@ -121,8 +117,9 @@ h1 {
   margin: 0px 0px 12px 0px;
 }
 
-/* .btns-champions-items i {
-} */
+.btns-champions-items i {
+  background-color: var(--card-background-color);
+}
 
 .btn-champions {
   display: flex;
@@ -149,7 +146,7 @@ h1 {
   text-transform: uppercase;
   font-size: 14px;
   cursor: pointer;
-  transition: text-shadow 0.3s ease, color 0.3s ease;
+  transition: text-shadow 0.2s ease, color 0.2s ease;
 }
 
 .btn-items:hover {
@@ -245,6 +242,7 @@ h1 {
   color: var(--text-color);
   font-size: 0.9rem;
   font-weight: bold;
+  text-shadow: 0 0 2px #d9e2f58c;
 }
 
 .item-card img {
@@ -300,6 +298,7 @@ h1 {
   text-overflow: ellipsis;
   width: 100%;
   box-sizing: border-box;
+  text-shadow: 0 0 2px #d9e2f58c;
 }
 
 .champion-card img {
@@ -329,8 +328,9 @@ h1 {
 }
 
 .btn-add-build-card {
-  background-color: rgba(113, 230, 113, 0.753);
-  box-shadow: 0 0 6px rgba(113, 230, 113, 0.753);
+  background-color: #71e671c0;
+  box-shadow: 0 0 6px #71e671c0;
+  text-shadow: 0 0 5px #aee2aec0, 0 0 10px #aee2aec0, 0 0 15px #aee2aec0;
   border-radius: 6px;
   border: 1px solid var(--card-border-color);
   width: 170px;
@@ -348,8 +348,9 @@ h1 {
 }
 
 .btn-import-build-card {
-  background-color: rgba(224, 166, 83, 0.925);
-  box-shadow: 0 0 6px rgba(224, 166, 83, 0.925);
+  background-color: #e0a653ec;
+  box-shadow: 0 0 6px #e0a653ec;
+  text-shadow: 0 0 5px #ddb781ec, 0 0 10px #ddb781ec, 0 0 15px #ddb781ec;
   border-radius: 6px;
   border: 1px solid var(--card-border-color);
   width: 170px;
@@ -380,6 +381,7 @@ h1 {
 
 .build-card-container button:hover {
   text-shadow: 0 0 6px #d9e2f5, 0 0 12px #d9e2f5, 0 0 18px #d9e2f5;
+  transition: text-shadow 0.2s ease, color 0.2s ease;
 }
 
 .build-card-header {
@@ -467,6 +469,7 @@ h1 {
 .build-champion-slot:hover {
   cursor: pointer;
   box-shadow: 0 0 6px 1px #d32a48, 0 0 8px 0px #d32a48;
+  transition: box-shadow 0.3s ease, color 0.3s ease;
 }
 
 .build-champion img {
@@ -509,6 +512,7 @@ h1 {
 .build-items-slot:hover {
   cursor: pointer;
   box-shadow: 0 0 6px 1px #d32a48, 0 0 8px 0px #d32a48;
+  transition: box-shadow 0.3s ease, color 0.3s ease;
 }
 
 .build-items-grid img {
@@ -529,6 +533,7 @@ h1 {
 .build-items-trinket:hover {
   cursor: pointer;
   box-shadow: 0 0 6px 1px #d32a48, 0 0 8px 0px #d32a48;
+  transition: box-shadow 0.3s ease, color 0.3s ease;
 }
 
 .build-items-trinket img {
