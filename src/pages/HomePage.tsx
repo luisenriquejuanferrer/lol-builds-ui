@@ -171,45 +171,63 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="flex-container">
-      <ItemFilters filters={filters} onCheckboxChange={handleCheckboxChange} />
-      <div className="sticky">
-        <div className="btns-champions-items">
-          <ButtonShowChampions onClick={() => setActiveGrid("champions")} />
-          <ButtonShowItems onClick={() => setActiveGrid("items")} />
-        </div>
-        <div>
-          <div
-            style={{ display: activeGrid === "champions" ? "block" : "none" }}
-          >
-            <ChampionGrid onDragStart={handleChampionDragStart} />
+    <div>
+      <div className="header">
+        <div className="header-container">
+          <div className="header-title">
+            <i className="bi bi-lightning-charge-fill"></i>
+            <h1>Quickset</h1>
           </div>
-          <div style={{ display: activeGrid === "items" ? "block" : "none" }}>
-            <ItemGrid filters={filters} onDragStart={handleItemDragStart} />
+          <div className="header-nav">
+            <h1>Home</h1>
+            <h1>Make a Build...</h1>
+            <h1>About</h1>
           </div>
         </div>
       </div>
-      <div className="build-card-section">
-        <div className="btns-add-import-build-card">
-          <ButtonAddBuildCard onClick={handleAddBuildCard} />
-          <ButtonImportBuildCard onImport={handleImport} />
+      <div className="flex-container">
+        <ItemFilters
+          filters={filters}
+          onCheckboxChange={handleCheckboxChange}
+        />
+        <div className="sticky">
+          <div className="btns-champions-items">
+            <ButtonShowChampions onClick={() => setActiveGrid("champions")} />
+            <ButtonShowItems onClick={() => setActiveGrid("items")} />
+          </div>
+          <div>
+            <div
+              style={{ display: activeGrid === "champions" ? "block" : "none" }}
+            >
+              <ChampionGrid onDragStart={handleChampionDragStart} />
+            </div>
+            <div style={{ display: activeGrid === "items" ? "block" : "none" }}>
+              <ItemGrid filters={filters} onDragStart={handleItemDragStart} />
+            </div>
+          </div>
         </div>
-        {buildCards.map((buildCard) => (
-          <BuildCard
-            key={buildCard.id}
-            id={buildCard.id}
-            buildChampionId={buildCard.buildChampionId}
-            initialItems={buildCard.initialItems}
-            trinketItem={buildCard.trinketItem}
-            onDelete={(id) =>
-              setBuildCards((prevBuildCards) =>
-                prevBuildCards.filter((card) => card.id !== id)
-              )
-            }
-          />
-        ))}
+        <div className="build-card-section">
+          <div className="btns-add-import-build-card">
+            <ButtonAddBuildCard onClick={handleAddBuildCard} />
+            <ButtonImportBuildCard onImport={handleImport} />
+          </div>
+          {buildCards.map((buildCard) => (
+            <BuildCard
+              key={buildCard.id}
+              id={buildCard.id}
+              buildChampionId={buildCard.buildChampionId}
+              initialItems={buildCard.initialItems}
+              trinketItem={buildCard.trinketItem}
+              onDelete={(id) =>
+                setBuildCards((prevBuildCards) =>
+                  prevBuildCards.filter((card) => card.id !== id)
+                )
+              }
+            />
+          ))}
+        </div>
+        {/* <CosmicBackground /> */}
       </div>
-      {/* <CosmicBackground /> */}
     </div>
   );
 };
