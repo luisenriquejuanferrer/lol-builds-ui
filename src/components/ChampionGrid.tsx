@@ -3,6 +3,8 @@ import { useState } from "react";
 import { fetchChampions } from "../services/championService";
 import { Champion } from "../types/Champion";
 import ChampionCard from "./ChampionCard";
+import SortDropdownBar from "./SortDropdownBar";
+import SearchBar from "./SearchBar";
 
 interface ChampionGridProps {
   onDragStart: (champion: Champion) => void;
@@ -45,33 +47,33 @@ const ChampionGrid: React.FC<ChampionGridProps> = () => {
   return (
     <div className="item-grid-container">
       <div className="item-grid-search-and-filter">
-        <div className="item-grid-search">
-          <i className="bi bi-search"></i>
-          <input
-            type="text"
-            placeholder="Champion Search"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        <div className="item-grid-filter">
-          <select
-            value={sortOrder}
-            onChange={(e) =>
-              setSortOrder(e.target.value as "asc" | "desc" | "")
-            }
-          >
-            <option value="">Filter</option>
-            <option value="asc">Name Down</option>
-            <option value="desc">Name Up</option>
-          </select>
-        </div>
+        <SearchBar
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          placeholder="Champion Search"
+        />
+        <SortDropdownBar
+          value={sortOrder}
+          onChange={setSortOrder}
+          options={[
+            { value: "desc", label: "Name Down" },
+            { value: "asc", label: "Name Up" },
+          ]}
+        />
       </div>
 
-      <div className={`item-grid ${sortedChampions.length === 0 ? "no-items" : ""}`}>
+      <div
+        className={`item-grid ${
+          sortedChampions.length === 0 ? "no-items" : ""
+        }`}
+      >
         {sortedChampions.length > 0 ? (
           sortedChampions.map((champion) => (
-            <ChampionCard key={champion.id} champion={champion} onDragStart={(draggedChampion) => draggedChampion}/>
+            <ChampionCard
+              key={champion.id}
+              champion={champion}
+              onDragStart={(draggedChampion) => draggedChampion}
+            />
           ))
         ) : (
           <p>No existe un campeón con ese nombre.</p>

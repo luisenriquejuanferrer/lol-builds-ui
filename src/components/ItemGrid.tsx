@@ -3,6 +3,8 @@ import { useState } from "react";
 import { fetchItems } from "../services/itemService";
 import { Item } from "../types/Item";
 import ItemCard from "../components/ItemCard";
+import SortDropdownBar from "./SortDropdownBar";
+import SearchBar from "./SearchBar";
 
 interface Filters {
   [key: string]: boolean;
@@ -61,35 +63,30 @@ const ItemGrid: React.FC<ItemGridProps> = ({ filters }) => {
   return (
     <div className="item-grid-container">
       <div className="item-grid-search-and-filter">
-        <div className="item-grid-search">
-          <i className="bi bi-search"></i>
-          <input
-            type="text"
-            placeholder="Item Search"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        <div className="item-grid-filter">
-          <select
-            value={sortOrder}
-            onChange={(e) =>
-              setSortOrder(e.target.value as "asc" | "desc" | "")
-            }
-          >
-            <option value="">Filter</option>
-            <option value="asc">Gold Down</option>
-            <option value="desc">Gold Up</option>
-          </select>
-        </div>
+        <SearchBar
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          placeholder="Item Search"
+        />
+        <SortDropdownBar
+          value={sortOrder}
+          onChange={setSortOrder}
+          options={[
+            { value: "desc", label: "Gold Down" },
+            { value: "asc", label: "Gold Up" },
+          ]}
+        />
       </div>
-
       <div
         className={`item-grid ${sortedItems.length === 0 ? "no-items" : ""}`}
       >
         {sortedItems.length > 0 ? (
           sortedItems.map((item) => (
-            <ItemCard key={item.id} item={item} onDragStart={(draggedItem) => draggedItem} />
+            <ItemCard
+              key={item.id}
+              item={item}
+              onDragStart={(draggedItem) => draggedItem}
+            />
           ))
         ) : (
           <p>No hay items con esos filtros</p>
