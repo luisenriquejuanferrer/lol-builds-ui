@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { fetchItems } from "../services/itemService";
 import { Item } from "../types/Item";
+import ItemCard from "../components/ItemCard";
 
 interface Filters {
   [key: string]: boolean;
@@ -88,19 +89,7 @@ const ItemGrid: React.FC<ItemGridProps> = ({ filters }) => {
       >
         {sortedItems.length > 0 ? (
           sortedItems.map((item) => (
-            <div
-              key={item.id}
-              className="item-card"
-              draggable
-              onDragStart={(event) => {
-                event.dataTransfer.setData("itemId", item.id.toString());
-                event.dataTransfer.setData("itemImage", item.image);
-              }}
-              title={item.name}
-            >
-              <img src={item.image} alt={item.name} />
-              <h2>{item.totalGold}</h2>
-            </div>
+            <ItemCard key={item.id} item={item} onDragStart={(draggedItem) => draggedItem} />
           ))
         ) : (
           <p>No hay items con esos filtros</p>

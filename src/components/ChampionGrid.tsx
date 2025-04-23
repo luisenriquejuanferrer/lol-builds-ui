@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { fetchChampions } from "../services/championService";
 import { Champion } from "../types/Champion";
+import ChampionCard from "./ChampionCard";
 
 interface ChampionGridProps {
   onDragStart: (champion: Champion) => void;
@@ -70,19 +71,7 @@ const ChampionGrid: React.FC<ChampionGridProps> = () => {
       <div className={`item-grid ${sortedChampions.length === 0 ? "no-items" : ""}`}>
         {sortedChampions.length > 0 ? (
           sortedChampions.map((champion) => (
-            <div
-              key={champion.id}
-              className="champion-card"
-              draggable
-              onDragStart={(event) => {
-                event.dataTransfer.setData("championId", champion.id);
-                event.dataTransfer.setData("championImage", champion.image);
-              }}
-              title={champion.id}
-            >
-              <img src={champion.image} alt={champion.id} />
-              <h2>{champion.id}</h2>
-            </div>
+            <ChampionCard key={champion.id} champion={champion} onDragStart={(draggedChampion) => draggedChampion}/>
           ))
         ) : (
           <p>No existe un campeón con ese nombre.</p>
