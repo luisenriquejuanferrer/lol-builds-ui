@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import CosmicBackground from "../CosmicBackground";
 import BuildCard from "../components/BuildCard";
 import ChampionGrid from "../components/ChampionGrid";
 import ItemFilters from "../components/ItemFilters";
@@ -226,7 +225,6 @@ const HomePage: React.FC = () => {
             />
           ))}
         </div>
-        {/* <CosmicBackground /> */}
       </div>
     </div>
   );
