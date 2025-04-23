@@ -1,4 +1,7 @@
 import { useState } from "react";
+import ButtonRenameBuildCard from "./buttons/ButtonRenameBuildCard";
+import ButtonExportBuildCard from "./buttons/ButtonExportBuildCard";
+import ButtonDeleteBuildCard from "./buttons/ButtonDeleteBuildCard";
 
 interface BuildCardProps {
   id: number;
@@ -105,8 +108,8 @@ const BuildCard: React.FC<BuildCardProps> = ({
   const handleExport = () => {
     const buildData = {
       buildChampionId: buildChampion.split("/").pop()?.split(".")[0] || "", // Extrae el ID del campeón
-      buildItems: buildItems.map((item) =>
-        item ? item.split("/").pop()?.split(".")[0] : "" // Extrae el ID de cada ítem
+      buildItems: buildItems.map(
+        (item) => (item ? item.split("/").pop()?.split(".")[0] : "") // Extrae el ID de cada ítem
       ),
       trinketItem: trinket.split("/").pop()?.split(".")[0] || "", // Extrae el ID del trinket
     };
@@ -140,15 +143,9 @@ const BuildCard: React.FC<BuildCardProps> = ({
         ) : (
           <p onClick={handleEditClick}>{buildName}</p>
         )}
-        <button onClick={handleEditClick}>
-          <i className="bi bi-pencil-square"></i>
-        </button>
-        <button onClick={handleExport}>
-          <i className="bi bi-box-arrow-up-left"></i>
-        </button>
-        <button onClick={() => onDelete(id)}>
-          <i className="bi bi-trash"></i>
-        </button>
+        <ButtonRenameBuildCard onClick={handleEditClick} />
+        <ButtonExportBuildCard onClick={handleExport} />
+        <ButtonDeleteBuildCard id={id} onClick={onDelete} />
       </div>
       <div className="build-card">
         <div
