@@ -103,7 +103,7 @@ h1 {
 }
 
 .header-nav h1:last-child {
-  background-color: #d4d4d4;
+  background-color: #f1f1f1;
   border: 1px solid var(--card-border-color);
   padding: 2px 8px;
   font-size: 0.85rem;
@@ -113,7 +113,7 @@ h1 {
 }
 
 .header-nav h1:hover {
-  color: #f3f3f3;
+  color: #ffffff;
   cursor: pointer;
   text-shadow: 0 0 2px #e2e2e2;
 }
@@ -679,4 +679,49 @@ h1 {
 
 .footer-copyright {
   text-align: center;
+}
+
+.about {
+  width: 100vh;
+  justify-content: center;
+  text-align: center;
+  margin: 8rem auto;
+}
+
+.about-container {
+  padding: 0px 150px;
+}
+
+.about h1 {
+  color: white;
+  height: auto;
+  font-size: 72px;
+}
+
+.about h2 {
+  color: #a0a0a0;
+  height: auto;
+  font-size: 24px;
+  margin-top: 2rem;
+  margin-bottom: 8rem;
+}
+
+.about button {
+  background-color: #f1f1f1;
+  border: 1px solid var(--card-border-color);
+  padding: 12px 20px;
+  font-size: 18px;
+  color: #252525;
+  border-radius: 4px;
+  box-shadow: 0 0 2px #ffffff, 0 0 8px #ffffff56;
+}
+
+.about button:hover {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.about i {
+  margin-left: 6px;
+  background-color: var(--card-background-transparent-color);
 }
