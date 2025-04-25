@@ -93,10 +93,19 @@ const MakeABuildPage: React.FC = () => {
     trinketItem: string; // Estado inicial de los ítems en la BuildCard
   }
 
-  const [buildCards, setBuildCards] = useState<BuildCardData[]>([]);
+  const [buildCards, setBuildCards] = useState<BuildCardData[]>(() => {
+    const savedBuildCards = localStorage.getItem("buildCards");
+    return savedBuildCards ? JSON.parse(savedBuildCards) : [];
+  });
+  
   const [activeGrid, setActiveGrid] = useState<"champions" | "items">(
     "champions"
   );
+
+  // Guardar buildCards en localStorage cada vez que cambie
+  useEffect(() => {
+    localStorage.setItem("buildCards", JSON.stringify(buildCards));
+  }, [buildCards]);
 
   useEffect(() => {
     localStorage.setItem("filters", JSON.stringify(filters));
