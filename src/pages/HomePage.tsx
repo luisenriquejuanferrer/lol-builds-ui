@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <section className="intro-section">
@@ -10,7 +13,7 @@ const HomePage: React.FC = () => {
             A simple and efficient tool to create, export and import custom
             builds for League of Legends.
           </h2>
-          <button>
+          <button onClick={() => navigate("/make-a-build")}>
             Get started
             <i className="bi bi-arrow-right" />
           </button>
@@ -101,7 +104,7 @@ const HomePage: React.FC = () => {
           <h2>Ready to optimize your builds?</h2>
           <p>Start creating custom builds to dominate the Summoner's Rift</p>
           <div className="cta-section-options">
-            <button>
+            <button onClick={() => navigate("/make-a-build")}>
               Get started now
               <i className="bi bi-arrow-right" />
             </button>

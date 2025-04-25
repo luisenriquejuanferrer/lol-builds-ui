@@ -81,6 +81,7 @@ h1 {
 
 .header-title:hover {
   font-size: 4rem;
+  cursor: pointer;
 }
 
 .header-nav {
