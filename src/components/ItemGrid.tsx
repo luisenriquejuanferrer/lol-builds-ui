@@ -19,13 +19,24 @@ const ItemGrid: React.FC<ItemGridProps> = ({ filters }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc" | "">("asc"); // Estado para el orden de filtrado
 
+  const fetchItemsWithSessionStorage = async () => {
+    const savedItems = sessionStorage.getItem("items");
+    if (savedItems) {
+      return JSON.parse(savedItems);
+    } else {
+      const items = await fetchItems();
+      sessionStorage.setItem("items", JSON.stringify(items));
+      return items;
+    }
+  };
+
   const {
     data: itemsMap,
     isLoading,
     error,
   } = useQuery<Record<string, Item>, Error>({
     queryKey: ["items"],
-    queryFn: fetchItems,
+    queryFn: fetchItemsWithSessionStorage,
   });
 
   if (isLoading) return <p>Cargando...</p>;

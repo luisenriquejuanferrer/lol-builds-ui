@@ -14,13 +14,26 @@ const ChampionGrid: React.FC<ChampionGridProps> = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc" | "">("asc");
 
+  const fetchChampionsWithSessionStorage = async () => {
+    const savedChampions = sessionStorage.getItem("champions");
+    if (savedChampions) {
+      // Si los campeones están en sessionStorage, los devolvemos
+      return JSON.parse(savedChampions);
+    } else {
+      // Si no están en sessionStorage, hacemos la llamada al backend
+      const champions = await fetchChampions();
+      sessionStorage.setItem("champions", JSON.stringify(champions)); // Guardar en sessionStorage
+      return champions;
+    }
+  };
+
   const {
     data: championsMap,
     isLoading,
     error,
   } = useQuery<Record<string, Champion>, Error>({
     queryKey: ["champions"],
-    queryFn: fetchChampions,
+    queryFn: fetchChampionsWithSessionStorage,
   });
 
   if (isLoading) return <p>Cargando...</p>;
