@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BuildCard from "../components/BuildCard";
 import ChampionGrid from "../components/ChampionGrid";
 import ItemFilters from "../components/ItemFilters";
@@ -47,38 +47,43 @@ interface Filters {
 
 // Se puede cambiar el orden de los filtros modificando el orden aquí
 const MakeABuildPage: React.FC = () => {
-  const [filters, setFilters] = useState<Filters>({
-    Damage: false,
-    AbilityHaste: false,
-    SpellDamage: false,
-    //Active: false,
-    Armor: false,
-    ArmorPenetration: false,
-    AttackSpeed: false,
-    //Aura: false,
-    Boots: false,
-    Consumable: false,
-    CooldownReduction: false,
-    CriticalStrike: false,
-    //GoldPer: false,
-    Health: false,
-    HealthRegen: false,
-    //Jungle: false,
-    //Lane: false,
-    LifeSteal: false,
-    MagicPenetration: false,
-    MagicResist: false,
-    Mana: false,
-    ManaRegen: false,
-    NonbootsMovement: false,
-    OnHit: false,
-    //Slow: false,
-    //SpellBlock: false,
-    //Stealth: false,
-    Tenacity: false,
-    Trinket: false,
-    //Vision: false,
-    SpellVamp: false,
+  const [filters, setFilters] = useState<Filters>(() => {
+    const savedFilters = localStorage.getItem("filters");
+    return savedFilters
+      ? JSON.parse(savedFilters)
+      : {
+          Damage: false,
+          AbilityHaste: false,
+          SpellDamage: false,
+          //Active: false,
+          Armor: false,
+          ArmorPenetration: false,
+          AttackSpeed: false,
+          //Aura: false,
+          Boots: false,
+          Consumable: false,
+          CooldownReduction: false,
+          CriticalStrike: false,
+          //GoldPer: false,
+          Health: false,
+          HealthRegen: false,
+          //Jungle: false,
+          //Lane: false,
+          LifeSteal: false,
+          MagicPenetration: false,
+          MagicResist: false,
+          Mana: false,
+          ManaRegen: false,
+          NonbootsMovement: false,
+          OnHit: false,
+          //Slow: false,
+          //SpellBlock: false,
+          //Stealth: false,
+          Tenacity: false,
+          Trinket: false,
+          //Vision: false,
+          SpellVamp: false,
+        };
   });
 
   interface BuildCardData {
@@ -88,10 +93,23 @@ const MakeABuildPage: React.FC = () => {
     trinketItem: string; // Estado inicial de los ítems en la BuildCard
   }
 
-  const [buildCards, setBuildCards] = useState<BuildCardData[]>([]);
+  const [buildCards, setBuildCards] = useState<BuildCardData[]>(() => {
+    const savedBuildCards = localStorage.getItem("buildCards");
+    return savedBuildCards ? JSON.parse(savedBuildCards) : [];
+  });
+
   const [activeGrid, setActiveGrid] = useState<"champions" | "items">(
     "champions"
   );
+
+  // Guardar buildCards en localStorage cada vez que cambie
+  useEffect(() => {
+    localStorage.setItem("buildCards", JSON.stringify(buildCards));
+  }, [buildCards]);
+
+  useEffect(() => {
+    localStorage.setItem("filters", JSON.stringify(filters));
+  }, [filters]);
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
@@ -110,6 +128,11 @@ const MakeABuildPage: React.FC = () => {
   };
 
   const handleAddBuildCard = () => {
+    if (buildCards.length >= 20) {
+      alert(`You can't add more than ${20} builds.`);
+      return;
+    }
+
     const newBuildCard: BuildCardData = {
       id: Date.now(), // Genera un ID único basado en el timestamp actual
       buildChampionId: "", // Inicializa sin un campeón

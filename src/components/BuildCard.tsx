@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ButtonRenameBuildCard from "./buttons/ButtonRenameBuildCard";
 import ButtonExportBuildCard from "./buttons/ButtonExportBuildCard";
 import ButtonDeleteBuildCard from "./buttons/ButtonDeleteBuildCard";
@@ -18,23 +18,50 @@ const BuildCard: React.FC<BuildCardProps> = ({
   trinketItem,
   onDelete,
 }) => {
-  const [buildItems, setBuildItems] = useState<string[]>(initialItems);
-  const [buildChampion, setBuildChampion] = useState<string>(
-    buildChampionId.startsWith("http")
+  // Restaurar el estado desde localStorage o usar valores iniciales
+  const [buildItems, setBuildItems] = useState<string[]>(() => {
+    const savedBuild = localStorage.getItem(`buildCard-${id}`);
+    return savedBuild ? JSON.parse(savedBuild).buildItems : initialItems;
+  });
+
+  const [buildChampion, setBuildChampion] = useState<string>(() => {
+    const savedBuild = localStorage.getItem(`buildCard-${id}`);
+    return savedBuild
+      ? JSON.parse(savedBuild).buildChampion
+      : buildChampionId.startsWith("http")
       ? buildChampionId
       : buildChampionId
       ? `https://ddragon.leagueoflegends.com/cdn/15.7.1/img/champion/${buildChampionId}.png`
-      : ""
-  );
-  const [trinket, setTrinket] = useState<string>(
-    trinketItem.startsWith("http")
+      : "";
+  });
+
+  const [trinket, setTrinket] = useState<string>(() => {
+    const savedBuild = localStorage.getItem(`buildCard-${id}`);
+    return savedBuild
+      ? JSON.parse(savedBuild).trinket
+      : trinketItem.startsWith("http")
       ? trinketItem
       : trinketItem
       ? `https://ddragon.leagueoflegends.com/cdn/15.7.1/img/item/${trinketItem}.png`
-      : ""
-  );
-  const [buildName, setBuildName] = useState<string>("Empty Build");
+      : "";
+  });
+  
+  const [buildName, setBuildName] = useState<string>(() => {
+    const savedBuild = localStorage.getItem(`buildCard-${id}`);
+    return savedBuild ? JSON.parse(savedBuild).buildName : "Empty Build";
+  });
   const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  // Guardar el estado en localStorage cada vez que cambie
+  useEffect(() => {
+    const buildData = {
+      buildItems,
+      buildChampion,
+      trinket,
+      buildName,
+    };
+    localStorage.setItem(`buildCard-${id}`, JSON.stringify(buildData));
+  }, [buildItems, buildChampion, trinket, buildName, id]);
 
   const handleEditClick = () => {
     setIsEditing(true); // Activa el modo de edición
