@@ -97,7 +97,7 @@ const MakeABuildPage: React.FC = () => {
     const savedBuildCards = localStorage.getItem("buildCards");
     return savedBuildCards ? JSON.parse(savedBuildCards) : [];
   });
-  
+
   const [activeGrid, setActiveGrid] = useState<"champions" | "items">(
     "champions"
   );
@@ -128,6 +128,11 @@ const MakeABuildPage: React.FC = () => {
   };
 
   const handleAddBuildCard = () => {
+    if (buildCards.length >= 20) {
+      alert(`You can't add more than ${20} builds.`);
+      return;
+    }
+
     const newBuildCard: BuildCardData = {
       id: Date.now(), // Genera un ID único basado en el timestamp actual
       buildChampionId: "", // Inicializa sin un campeón
