@@ -4,6 +4,7 @@ import MakeABuildPage from "./pages/MakeABuildPage";
 import HomePage from "./pages/HomePage";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/make-a-build" element={<MakeABuildPage />} />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
           <Footer />
         </Router>

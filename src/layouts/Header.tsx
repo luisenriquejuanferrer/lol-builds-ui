@@ -14,7 +14,7 @@ const Header: React.FC = () => {
           <div className="header-nav">
             <h1 onClick={() => navigate("/")}>Home</h1>
             <h1 onClick={() => navigate("/make-a-build")}>Make a Build...</h1>
-            <h1>About</h1>
+            <h1 onClick={() => navigate("/about")}>About</h1>
           </div>
         </div>
       </div>
